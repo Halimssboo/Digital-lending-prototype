@@ -1,0 +1,3012 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/industry-c66b2240-f3e0-4bf9-8e25-298cead0aa71/styles.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<script src="_ds/industry-c66b2240-f3e0-4bf9-8e25-298cead0aa71/_ds_bundle.js"></script>
+<script src="app/countries.js"></script>
+<script src="app/affordability.js"></script>
+<script src="app/markets.js"></script>
+<script src="app/kyc.js"></script>
+<script src="app/business.js"></script>
+<script src="app/pricing.js"></script>
+<script src="app/assessment.js"></script>
+<script src="app/demo-applicants.js"></script>
+<style>
+/* Site palette: off-white ground, charcoal type, one teal accent with a pale
+   teal tint. Set on the design system's own tokens so every component, card,
+   input, tag and status style repaints from one place. */
+:root {
+  /* Warm consumer palette: deep teal leads, coral / peach / aqua / yellow carry
+     the warmth. Set on the design system's tokens so every component follows. */
+  --color-bg: #FFF9F3;
+  --color-surface: #FFFFFF;
+  --color-text: #202526;
+  --color-accent: #185C5D;
+  --color-accent-2: #E56A5D;
+  --color-divider: #E7DED4;
+
+  --c-teal: #185C5D;
+  --c-teal-fresh: #4FA7A5;
+  --c-aqua: #DDF2EF;
+  --c-coral: #E56A5D;
+  --c-coral-deep: #C2503F;
+  --c-peach: #F6D8CC;
+  --c-yellow: #F2C66D;
+  --c-yellow-deep: #7A560E;
+  --c-cream: #FFF9F3;
+
+  --color-accent-100: #DDF2EF;
+  --color-accent-200: #BFE5E1;
+  --color-accent-300: #9BD3CF;
+  --color-accent-400: #74BEBB;
+  --color-accent-500: #4FA7A5;
+  --color-accent-600: #2E8384;
+  --color-accent-700: #185C5D;
+  --color-accent-800: #12494A;
+  --color-accent-900: #0C3435;
+
+  --color-accent-2-100: #FBEAE4;
+  --color-accent-2-200: #F6D8CC;
+  --color-accent-2-300: #F1BCAB;
+  --color-accent-2-400: #EC9A88;
+  --color-accent-2-500: #E56A5D;
+  --color-accent-2-600: #D25A4C;
+  --color-accent-2-700: #C2503F;
+  --color-accent-2-800: #9C3F32;
+  --color-accent-2-900: #6E2C23;
+
+  --color-neutral-100: #FFF9F3;
+  --color-neutral-200: #F7F0E8;
+  --color-neutral-300: #EFE6DC;
+  --color-neutral-400: #E7DED4;
+  --color-neutral-500: #CFC4B8;
+  --color-neutral-600: #A2988E;
+  --color-neutral-700: #6F7677;
+  --color-neutral-800: #454B4C;
+  --color-neutral-900: #2A2F30;
+}
+html, body { margin: 0; background: var(--color-bg); }
+.text-muted { color: #6F7677; }
+.btn-primary { color: #FFFFFF; }
+.input { background: #FFFFFF; }
+a { color: var(--color-accent-700); }
+a:hover { color: var(--color-accent-800); }
+input[type="checkbox"] { accent-color: var(--color-accent); width: 16px; height: 16px;
+  position: static; opacity: 1; pointer-events: auto; flex: none; }
+/* Deliberate departure from Industry: cards are softened — subtly rounded,
+   lighter border, faint shadow — and drop the blueprint registration marks,
+   which cannot sit on a rounded corner. Everything else keeps the system. */
+.card {
+  border-radius: 10px;
+  background: #FFFFFF;
+  border-color: #D8DEDC;
+  box-shadow: 0 1px 2px rgba(32,36,38,.04), 0 6px 18px rgba(32,36,38,.05);
+}
+.card > i.corner { display: none; }
+[data-sec] .card-kicker { font-size: 10.5px; letter-spacing: 0.1em; }
+[data-sec] { padding-top: 48px; padding-bottom: 48px; }
+[data-sec-hero] { padding-top: 88px; }
+@media (max-width: 700px) {
+  [data-sec] { padding-top: 32px; padding-bottom: 32px; }
+  [data-sec-hero] { padding-top: 56px; }
+}
+@media (max-width: 1000px) {
+  [data-col4] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  [data-col3] { grid-template-columns: minmax(0, 1fr) !important; }
+}
+@media (max-width: 900px) {
+  [data-order-last] { order: 2; }
+}
+@media (max-width: 560px) {
+  [data-col4] { grid-template-columns: minmax(0, 1fr) !important; }
+}
+@media (max-width: 900px) {
+  [data-col2] { grid-template-columns: minmax(0, 1fr) !important; gap: 28px !important; }
+  [data-side] { border-left: 0 !important; padding-left: 0 !important; position: static !important;
+    border-top: 1px solid var(--color-divider) !important; padding-top: 22px !important; }
+}
+
+/* Typography refinement: one modern sans (Plus Jakarta Sans) at moderated
+   weights, softer charcoal text and roomier line-height. Colours, layout,
+   cards and spacing are untouched. */
+:root {
+  --font-heading: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-heading-weight: 700;
+  --color-text: #3C4545;
+  --c-charcoal: #3C4545;
+  --c-charcoal-strong: #2F3838;
+  --c-charcoal-muted: #747F7E;
+}
+body { color: var(--c-charcoal); font-weight: 400; line-height: 1.62; letter-spacing: 0; }
+p, li, dd { text-wrap: pretty; }
+h1, h2, h3, h4, h5 { color: var(--c-charcoal-strong); letter-spacing: -0.004em; }
+h1 { font-weight: 700; line-height: 1.14; }
+h2 { font-weight: 700; line-height: 1.18; }
+h3 { font-weight: 650; line-height: 1.26; }
+h4, h5 { font-weight: 600; line-height: 1.34; letter-spacing: 0; }
+h6 { font-weight: 600; letter-spacing: 0.07em; line-height: 1.4; }
+.nav-brand { font-weight: 700; letter-spacing: -0.01em; }
+.btn { font-weight: 600; letter-spacing: 0; }
+.card-title { font-weight: 600; line-height: 1.3; letter-spacing: 0; color: var(--c-charcoal-strong); }
+.card-kicker { font-weight: 600; letter-spacing: 0.09em; }
+.card-body, .card-meta { color: var(--c-charcoal-muted); line-height: 1.6; }
+.text-muted { color: var(--c-charcoal-muted); }
+.tag { font-weight: 600; }
+.table th { font-weight: 600; letter-spacing: 0.06em; }
+label { font-weight: 600; letter-spacing: 0; color: var(--c-charcoal); }
+</style>
+</helmet>
+<div style="background:var(--color-bg);color:var(--color-text);font-family:var(--font-body)">
+
+<header class="nav" style="position:sticky;top:0;background:var(--color-bg);z-index:20;padding:var(--space-3) var(--space-6);gap:var(--space-6)">
+  <span class="nav-brand">Ethical Digital Lending</span>
+  <nav aria-label="Main" style="display:flex;gap:var(--space-1);flex-wrap:wrap;align-items:center">
+    <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="3">
+      <div data-navmenu="" style="position:relative" onMouseEnter="{{ n.onEnter }}" onMouseLeave="{{ n.onLeave }}">
+        <button class="btn btn-ghost" onClick="{{ n.onClick }}" onKeyDown="{{ n.onKeyDown }}" aria-expanded="{{ n.expanded }}" style="{{ n.style }}">{{ n.label }}</button>
+        <sc-if value="{{ n.open }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;top:100%;right:0;left:auto;padding-top:8px;z-index:40">
+            <div role="menu" style="min-width:236px;display:grid;gap:2px;background:var(--color-surface);border:1px solid var(--color-divider);border-radius:10px;box-shadow:0 1px 2px rgba(32,36,38,.05),0 10px 26px rgba(32,36,38,.10);padding:6px">
+              <sc-for list="{{ n.menu }}" as="m" hint-placeholder-count="3">
+                <button class="btn btn-ghost" role="menuitem" onClick="{{ m.onOpen }}" style="justify-content:flex-start;text-align:left;width:100%;white-space:nowrap;font-size:14px;padding:8px 10px;border-radius:6px;color:var(--color-text)" style-hover="background:var(--color-accent-100);color:var(--color-accent-800)">{{ m.name }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </sc-for>
+  </nav>
+</header>
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<main style="position:relative;isolation:isolate">
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(46% 18% at 78% 2%, rgba(221,242,239,.95), rgba(221,242,239,0) 70%),radial-gradient(36% 13% at 97% 11%, rgba(246,216,204,.78), rgba(246,216,204,0) 72%),radial-gradient(34% 10% at 54% 16%, rgba(242,198,109,.30), rgba(242,198,109,0) 74%),radial-gradient(44% 13% at 4% 25%, rgba(221,242,239,.72), rgba(221,242,239,0) 74%),radial-gradient(40% 12% at 92% 36%, rgba(246,216,204,.52), rgba(246,216,204,0) 74%),radial-gradient(52% 15% at 20% 48%, rgba(221,242,239,.72), rgba(221,242,239,0) 74%),radial-gradient(34% 10% at 95% 57%, rgba(242,198,109,.26), rgba(242,198,109,0) 74%),radial-gradient(50% 14% at 62% 68%, rgba(221,242,239,.62), rgba(221,242,239,0) 74%),radial-gradient(40% 12% at 6% 78%, rgba(246,216,204,.48), rgba(246,216,204,0) 74%),radial-gradient(46% 13% at 86% 88%, rgba(221,242,239,.58), rgba(221,242,239,0) 74%),radial-gradient(38% 11% at 30% 96%, rgba(242,198,109,.22), rgba(242,198,109,0) 74%),linear-gradient(180deg, #FFF9F3, #FFF9F3)"></div>
+
+  <section data-sec="" data-sec-hero="" style="position:relative;padding-left:var(--space-6);padding-right:var(--space-6)">
+    
+    <div style="position:relative;z-index:1;max-width:1120px;margin:0 auto">
+      <h6 style="margin:0 0 var(--space-4);color:var(--color-accent-700)">Personal and business lending</h6>
+      <h1 style="font-size: clamp(46px,7.5vw,88px); line-height: 1.14; margin: 0 0 var(--space-6); max-width: 12em; color: #185C5D; text-decoration-line: none; font-style: normal; font-weight: 700">Responsible lending, <span style="color:var(--c-coral)">designed for inclusion</span></h1>
+      <p style="font-size:clamp(18px,2vw,22px);line-height:1.5;max-width:32em;margin:0">Transparent, affordability-first digital lending for African markets. Personal and business finance, priced openly and explained in plain language.</p>
+    </div>
+  </section>
+
+  <section data-sec="" style="padding-top:var(--space-6);padding-left:var(--space-6);padding-right:var(--space-6)">
+    <div style="max-width:1120px;margin:0 auto">
+      <div style="max-width:26em;margin:0 0 var(--space-8)">
+        <h2 style="margin:0 0 var(--space-3);font-size:clamp(32px,4.4vw,52px);line-height:1.16">Choose the finance that fits your needs</h2>
+        <p class="text-muted" style="margin:0;font-size:16px;line-height:1.55">Select a product to see what it is for, its terms and how it is assessed.</p>
+      </div>
+
+      <div data-col2="" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-8)">
+        <div>
+          <h6 style="margin:0 0 var(--space-3);color:var(--c-coral-deep)">Personal</h6>
+          <h3 style="margin:0 0 var(--space-3);font-size:clamp(24px,2.8vw,32px);line-height:1.24">Personal loans</h3>
+          <p class="text-muted" style="margin:0 0 var(--space-6);font-size:15px;line-height:1.55;max-width:26em">Borrowing for individuals, assessed on affordability.</p>
+          <ul style="list-style:none;margin:0;padding:0;display:grid;border-top:1px solid rgba(32,37,38,.08)">
+            <sc-for list="{{ homePersonalList }}" as="p" hint-placeholder-count="3">
+              <li style="display:grid;border-bottom:1px solid rgba(32,37,38,.08)">
+                <button class="btn btn-ghost" onClick="{{ p.onOpen }}" style="{{ p.rowStyle }}" style-hover="{{ p.rowHover }}">
+                  <span style="display:flex;align-items:center;gap:var(--space-3)"><span aria-hidden="true" style="{{ p.dotStyle }}"></span>{{ p.name }}</span>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="{{ p.accent }}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+                </button>
+              </li>
+            </sc-for>
+          </ul>
+        </div>
+        <div>
+          <h6 style="margin:0 0 var(--space-3);color:var(--color-accent-700)">Business</h6>
+          <h3 style="margin:0 0 var(--space-3);font-size:clamp(24px,2.8vw,32px);line-height:1.24">Business finance</h3>
+          <p class="text-muted" style="margin:0 0 var(--space-6);font-size:15px;line-height:1.55;max-width:26em">Funding for registered, sole-trader and informal businesses.</p>
+          <ul style="list-style:none;margin:0;padding:0;display:grid;border-top:1px solid rgba(32,37,38,.08)">
+            <sc-for list="{{ homeBusinessList }}" as="p" hint-placeholder-count="3">
+              <li style="display:grid;border-bottom:1px solid rgba(32,37,38,.08)">
+                <button class="btn btn-ghost" onClick="{{ p.onOpen }}" style="{{ p.rowStyle }}" style-hover="{{ p.rowHover }}">
+                  <span style="display:flex;align-items:center;gap:var(--space-3)"><span aria-hidden="true" style="{{ p.dotStyle }}"></span>{{ p.name }}</span>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="{{ p.accent }}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+                </button>
+              </li>
+            </sc-for>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section data-sec="" style="padding-left:var(--space-6);padding-right:var(--space-6)">
+    <div data-col2="" style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-6)">
+      <div style="display:flex;flex-direction:column;gap:var(--space-2);padding-top:var(--space-4);padding-right:var(--space-6);padding-bottom:var(--space-4);padding-left:var(--space-6);background:rgba(255,252,247,.62);border:1px solid rgba(24,92,93,.09);border-top:3px solid var(--c-coral);border-radius:14px;transition:background 200ms ease,border-color 200ms ease,box-shadow 200ms ease" style-hover="background:rgba(255,255,255,.9);border-color:rgba(229,106,93,.28);box-shadow:0 4px 16px rgba(32,37,38,.07)">
+        <span class="card-kicker" style="color:var(--c-coral-deep)">Personal</span>
+        <h2 style="margin:0;font-size:clamp(24px,2.6vw,32px);line-height:1.2;max-width:13em">Borrow with the terms in front of you</h2>
+        <p style="margin:0;font-size:14px;line-height:1.5;max-width:30em">See your monthly repayment, total interest and affordability position before any recommendation is made.</p>
+        <button class="btn btn-primary" onClick="{{ goPersonal }}" style="align-self:flex-start;margin-top:var(--space-2);padding:var(--space-2) var(--space-4);font-size:14px">Personal lending</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:var(--space-2);padding-top:var(--space-4);padding-right:var(--space-6);padding-bottom:var(--space-4);padding-left:var(--space-6);background:rgba(255,252,247,.62);border:1px solid rgba(24,92,93,.09);border-top:3px solid var(--c-teal-fresh);border-radius:14px;transition:background 200ms ease,border-color 200ms ease,box-shadow 200ms ease" style-hover="background:rgba(255,255,255,.9);border-color:rgba(79,167,165,.32);box-shadow:0 4px 16px rgba(32,37,38,.07)">
+        <span class="card-kicker" style="color:var(--color-accent-700)">Business</span>
+        <h2 style="margin:0;font-size:clamp(24px,2.6vw,32px);line-height:1.2;max-width:13em">Flexible funding for growing businesses</h2>
+        <p style="margin:0;font-size:14px;line-height:1.5;max-width:30em">Working capital, asset finance and invoice finance for registered companies, sole traders and informal operators alike.</p>
+        <button class="btn btn-primary" onClick="{{ goBusiness }}" style="align-self:flex-start;margin-top:var(--space-2);padding:var(--space-2) var(--space-4);font-size:14px">Business finance</button>
+      </div>
+    </div>
+  </section>
+
+
+  <section data-sec="" style="padding-left:var(--space-6);padding-right:var(--space-6)">
+    <div data-col2="" style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-8);align-items:center">
+      <div>
+        <h2 style="margin:0 0 var(--space-4);font-size:clamp(32px,4.4vw,52px);line-height:1.16;color:var(--c-teal)">Who can apply?</h2>
+        <p style="margin:0 0 var(--space-6);font-size:16px;line-height:1.55;max-width:30em">Registration is not a precondition. Eligibility is judged on trading evidence and affordability.</p>
+        <div data-col2="" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-6)">
+          <div>
+            <h6 style="margin:0 0 var(--space-3)">Individuals</h6>
+            <ul style="list-style:none;margin:0;padding:0;display:grid;gap:var(--space-2)">
+              <sc-for list="{{ homeEligibleIndividuals }}" as="i" hint-placeholder-count="4">
+                <li style="display:flex;gap:var(--space-3);font-size:14px;line-height:1.5;align-items:flex-start"><span aria-hidden="true" style="{{ i.iconStyle }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="{{ i.stroke }}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span>{{ i.text }}</span></li>
+              </sc-for>
+            </ul>
+          </div>
+          <div>
+            <h6 style="margin:0 0 var(--space-3)">Businesses</h6>
+            <ul style="list-style:none;margin:0;padding:0;display:grid;gap:var(--space-2)">
+              <sc-for list="{{ homeEligibleBusinesses }}" as="i" hint-placeholder-count="4">
+                <li style="display:flex;gap:var(--space-3);font-size:14px;line-height:1.5;align-items:flex-start"><span aria-hidden="true" style="{{ i.iconStyle }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="{{ i.stroke }}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span>{{ i.text }}</span></li>
+              </sc-for>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <figure class="blueprint" style="margin:0;border:1px solid var(--color-divider);min-height:320px;display:flex;align-items:center;justify-content:center;padding:var(--space-6)">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <svg width="320" height="220" viewBox="0 0 320 220" fill="none" stroke="var(--color-accent)" stroke-width="1.5" aria-hidden="true">
+          <rect x="10" y="10" width="130" height="90"></rect>
+          <rect x="180" y="10" width="130" height="90"></rect>
+          <rect x="10" y="120" width="130" height="90"></rect>
+          <rect x="180" y="120" width="130" height="90"></rect>
+          <path d="M45 55h60M45 70h34M215 55h60M215 70h44M45 165h60M45 180h48M215 165h60M215 180h30"></path>
+          <path d="M140 55h40M75 100v20M245 100v20" stroke-dasharray="4 5"></path>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section data-sec="" style="padding-left:var(--space-6);padding-right:var(--space-6)">
+    <div data-col2="" style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-8);align-items:center">
+      <figure class="blueprint" data-order-last="" style="margin:0;border:1px solid var(--color-divider);min-height:320px;display:flex;align-items:center;justify-content:center;padding:var(--space-6)">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <svg width="300" height="220" viewBox="0 0 300 220" fill="none" stroke="var(--color-accent)" stroke-width="1.5" aria-hidden="true">
+          <rect x="20" y="14" width="180" height="120"></rect>
+          <path d="M44 46h130M44 70h130M44 94h84"></path>
+          <rect x="118" y="86" width="160" height="118"></rect>
+          <path d="M142 118h112M142 142h112M142 166h70"></path>
+          <circle cx="252" cy="52" r="26"></circle>
+          <path d="M240 52l9 9 17-18"></path>
+        </svg>
+      </figure>
+      <div>
+        <h2 style="margin:0 0 var(--space-4);font-size:clamp(32px,4.4vw,52px);line-height:1.16">What you’ll need</h2>
+        <p style="margin:0 0 var(--space-6);font-size:16px;line-height:1.55;max-width:30em">Verification is simulated. No documents, ID numbers or account details are uploaded or stored.</p>
+        <div data-col2="" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-6)">
+          <div>
+            <h6 style="margin:0 0 var(--space-3);color:var(--c-coral-deep)">Personal</h6>
+            <ul style="list-style:none;margin:0;padding:0;display:grid;gap:var(--space-2)">
+              <sc-for list="{{ homeNeedsPersonal }}" as="i" hint-placeholder-count="5">
+                <li style="display:flex;gap:var(--space-3);font-size:14px;line-height:1.5;align-items:flex-start"><span aria-hidden="true" style="{{ i.iconStyle }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="{{ i.stroke }}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span>{{ i.text }}</span></li>
+              </sc-for>
+            </ul>
+          </div>
+          <div>
+            <h6 style="margin:0 0 var(--space-3);color:var(--c-teal)">Business</h6>
+            <ul style="list-style:none;margin:0;padding:0;display:grid;gap:var(--space-2)">
+              <sc-for list="{{ homeNeedsBusiness }}" as="i" hint-placeholder-count="5">
+                <li style="display:flex;gap:var(--space-3);font-size:14px;line-height:1.5;align-items:flex-start"><span aria-hidden="true" style="{{ i.iconStyle }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="{{ i.stroke }}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span>{{ i.text }}</span></li>
+              </sc-for>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-sec="" style="margin:var(--space-6) var(--space-6);padding:var(--space-8) var(--space-6);border-radius:28px;background:linear-gradient(180deg, rgba(221,242,239,.78), rgba(255,255,255,.5));border:1px solid rgba(24,92,93,.10)">
+    <div style="max-width:1120px;margin:0 auto">
+      <h2 style="margin:0 0 var(--space-3);font-size:clamp(32px,4.4vw,52px);line-height:1.16;color:var(--c-teal)">How it works</h2>
+      <p style="margin:0 0 var(--space-8);font-size:16px;line-height:1.55;max-width:32em;color:#3C4545">Three steps, the same for personal and business applicants.</p>
+      <ol data-col4="" style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-6)">
+        <sc-for list="{{ homeSteps }}" as="s" hint-placeholder-count="3">
+          <li style="display:grid;gap:var(--space-2);align-content:start;padding-top:var(--space-4);border-top:2px solid {{ s.accent }}">
+            <span style="{{ s.numStyle }}">{{ s.n }}</span>
+            <h4 style="margin:0;font-size:19px;line-height:1.2">{{ s.title }}</h4>
+            <p style="margin:0;font-size:14px;line-height:1.55;color:#3C4545">{{ s.body }}</p>
+          </li>
+        </sc-for>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sec="" style="padding-left:var(--space-6);padding-right:var(--space-6)">
+    <div style="max-width:1120px;margin:0 auto">
+      <h2 style="margin:0 0 var(--space-8);font-size:clamp(32px,4.4vw,52px);line-height:1.16;max-width:14em">Responsible lending, in practice</h2>
+      <div style="display:grid;gap:0">
+        <sc-for list="{{ homePrinciples }}" as="p" hint-placeholder-count="5">
+          <div data-col2="" style="display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:var(--space-6);padding:var(--space-6) 0;border-top:1px solid var(--color-divider)">
+            <h3 style="margin:0;font-size:clamp(22px,2.4vw,30px);line-height:1.26;display:flex;gap:var(--space-3);align-items:flex-start"><span aria-hidden="true" style="{{ p.markerStyle }}"></span><span>{{ p.title }}</span></h3>
+            <p style="margin:0;font-size:16px;line-height:1.6;max-width:34em">{{ p.body }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-sec="" style="padding-left:var(--space-6);padding-right:var(--space-6)">
+    <div style="max-width:1120px;margin:0 auto">
+      <h2 style="margin:0 0 var(--space-2);font-size:clamp(28px,3.4vw,42px);line-height:1.18">Guidance &amp; resources</h2>
+      <p class="text-muted" style="font-size:15px;margin:0 0 var(--space-8);max-width:38em">Short, plain-language guides on what borrowing costs and how these assessments work.</p>
+      <div data-col4="" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-6)">
+        <sc-for list="{{ homeResourceCards }}" as="r" hint-placeholder-count="4">
+          <div style="display:grid;gap:var(--space-2);align-content:start;padding:var(--space-4);background:rgba(255,252,247,.62);border:1px solid rgba(24,92,93,.09);border-radius:14px;transition:background 200ms ease,border-color 200ms ease,box-shadow 200ms ease" style-hover="background:rgba(255,255,255,.9);border-color:rgba(24,92,93,.20);box-shadow:0 4px 16px rgba(32,37,38,.07)">
+            <div class="card-kicker" style="{{ r.tagStyle }}">{{ r.kicker }}</div>
+            <h4 style="margin:0;font-size:16px;line-height:1.25">{{ r.title }}</h4>
+            <p style="margin:0;font-size:13px;line-height:1.5;max-width:34em">{{ r.body }}</p>
+            <button class="btn btn-ghost" onClick="{{ r.onOpen }}" style="justify-self:start;padding-left:0;font-size:12px;color:{{ r.accent }}">Learn more</button>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-sec="" style="padding-left:var(--space-6);padding-right:var(--space-6)">
+    <div style="max-width:1120px;margin:0 auto">
+      <h2 style="margin:0 0 var(--space-2);font-size:clamp(28px,3.4vw,42px);line-height:1.18">About this platform</h2>
+      <p class="text-muted" style="font-size:15px;margin:0 0 var(--space-8);max-width:38em">Built around affordability, transparency and responsible lending safeguards for African markets.</p>
+      <div data-col2="" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-6) var(--space-8)">
+        <div style="padding-top:var(--space-4);border-top:1px solid var(--color-divider)">
+          <h4 style="margin:0 0 var(--space-2);font-size:18px">How we assess</h4>
+          <p style="margin:0;font-size:14px;line-height:1.55">The assessment uses the information you enter to estimate affordability, repayment capacity and relevant financial indicators, using transparent rule-based logic.</p>
+        </div>
+        <div style="padding-top:var(--space-4);border-top:1px solid var(--color-divider)">
+          <h4 style="margin:0 0 var(--space-2);font-size:18px">What we never collect</h4>
+          <p style="margin:0;font-size:14px;line-height:1.55">No real ID numbers, bank credentials, account passwords or sensitive personal documents are collected or stored.</p>
+        </div>
+        <div style="padding-top:var(--space-4);border-top:1px solid var(--color-divider)">
+          <h4 style="margin:0 0 var(--space-2);font-size:18px">Limitations</h4>
+          <p style="margin:0;font-size:14px;line-height:1.55">Rates, product ranges and assessment results are illustrative and are not live lending offers, approvals or regulatory assessments.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+</sc-if>
+
+<sc-if value="{{ isPersonal }}" hint-placeholder-val="{{ false }}">
+<main style="position:relative;isolation:isolate;padding:var(--space-8) var(--space-6)">
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(46% 18% at 78% 2%, rgba(221,242,239,.95), rgba(221,242,239,0) 70%),radial-gradient(36% 13% at 97% 11%, rgba(246,216,204,.78), rgba(246,216,204,0) 72%),radial-gradient(34% 10% at 54% 16%, rgba(242,198,109,.30), rgba(242,198,109,0) 74%),radial-gradient(44% 13% at 4% 25%, rgba(221,242,239,.72), rgba(221,242,239,0) 74%),radial-gradient(40% 12% at 92% 36%, rgba(246,216,204,.52), rgba(246,216,204,0) 74%),radial-gradient(52% 15% at 20% 48%, rgba(221,242,239,.72), rgba(221,242,239,0) 74%),radial-gradient(34% 10% at 95% 57%, rgba(242,198,109,.26), rgba(242,198,109,0) 74%),radial-gradient(50% 14% at 62% 68%, rgba(221,242,239,.62), rgba(221,242,239,0) 74%),radial-gradient(40% 12% at 6% 78%, rgba(246,216,204,.48), rgba(246,216,204,0) 74%),radial-gradient(46% 13% at 86% 88%, rgba(221,242,239,.58), rgba(221,242,239,0) 74%),radial-gradient(38% 11% at 30% 96%, rgba(242,198,109,.22), rgba(242,198,109,0) 74%),linear-gradient(180deg, #FFF9F3, #FFF9F3)"></div>
+  <div style="max-width:1080px;margin:0 auto">
+  <h6 style="margin:0 0 var(--space-2);color:var(--c-coral-deep)">Personal lending</h6>
+  <h1 style="margin:0 0 var(--space-4);font-size:clamp(36px,5vw,56px);line-height:1.14;max-width:14em">Know the cost before you commit</h1>
+  <p style="font-size:17px;line-height:1.5;max-width:40em;margin:0 0 var(--space-6)">Every figure is shown up front: the rate, the monthly repayment and what is left over each month. Borrowing assessed on affordability.</p>
+
+  <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin:0 0 var(--space-8)">
+    <button class="btn btn-primary" onClick="{{ onStart }}" style="padding:var(--space-3) var(--space-6)">Apply for loan</button>
+    <button class="btn btn-ghost" onClick="{{ goPersonalInfo }}" style="padding:var(--space-3) var(--space-4);color:var(--c-coral-deep)" style-hover="background:var(--c-peach)">View lending information</button>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-4)">
+    <sc-for list="{{ personalOverviewProducts }}" as="p" hint-placeholder-count="3">
+      <button onClick="{{ p.onOpen }}" style="display:grid;grid-template-rows:auto auto 1fr;gap:var(--space-2);padding:var(--space-4);text-align:left;width:100%;font-family:inherit;color:#3C4545;cursor:pointer;background:rgba(255,252,247,.62);border:1px solid rgba(24,92,93,.09);border-radius:14px;box-shadow:0 1px 2px rgba(32,37,38,.03);border-top:3px solid var(--c-coral);transition:background 200ms ease,border-color 200ms ease,box-shadow 200ms ease,transform 200ms ease" style-hover="background:rgba(255,255,255,.9);border-color:rgba(229,106,93,.30);border-top-color:var(--c-coral-deep);box-shadow:0 6px 18px rgba(32,37,38,.08);transform:translateY(-2px) scale(1.012)">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3)">
+          <span class="card-title" style="margin:0;font-size:16px;line-height:1.25">{{ p.title }}</span>
+          <span aria-hidden="true" style="color:var(--c-coral-deep);font-size:16px">&rarr;</span>
+        </div>
+        <p class="card-body" style="margin:0;font-size:13px;line-height:1.5">{{ p.body }}</p>
+        <dl style="margin:var(--space-1) 0 0;display:grid;grid-template-columns:auto 1fr;gap:var(--space-1) var(--space-3);font-size:12px;align-content:end">
+          <dt style="color:var(--c-coral-deep);font-weight:600">Amount</dt><dd style="margin:0">{{ p.range }}</dd>
+          <dt style="color:var(--c-coral-deep);font-weight:600">Term</dt><dd style="margin:0">{{ p.term }}</dd>
+          <dt style="color:var(--c-coral-deep);font-weight:600">Annual rate</dt><dd style="margin:0">{{ p.rate }}</dd>
+          <dt style="color:var(--c-coral-deep);font-weight:600">Repayment</dt><dd style="margin:0">{{ p.structure }}</dd>
+        </dl>
+      </button>
+    </sc-for>
+  </div>
+  <p class="text-muted" style="font-size:12px;margin:var(--space-3) 0 0">{{ marketRangeNote }}</p>
+
+  <section style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-divider)">
+    <h2 style="margin:0 0 var(--space-2)">Who can apply?</h2>
+    <p style="font-size:15px;line-height:1.5;max-width:44em;margin:0 0 var(--space-4)">A credit file is not a precondition. Eligibility is judged on affordability and the evidence you can provide.</p>
+    <div data-col2="" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-6)">
+      <div>
+        <h6 style="margin:0 0 var(--space-2)">Applicant types</h6>
+        <ul style="margin:0;padding-left:var(--space-4);display:grid;gap:var(--space-1);font-size:14px">
+          <li>Aged 18 or over</li>
+          <li>Salaried or regular employment</li>
+          <li>Self-employed or irregular income</li>
+          <li>Thin-file applicants with alternative financial information</li>
+        </ul>
+      </div>
+      <div>
+        <h6 style="margin:0 0 var(--space-2)">What we look for</h6>
+        <ul style="margin:0;padding-left:var(--space-4);display:grid;gap:var(--space-1);font-size:14px">
+          <li>Evidence of regular or consistent income</li>
+          <li>Essential spending and existing commitments</li>
+          <li>An affordable monthly repayment</li>
+          <li>Relevant financial history where available</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-divider)">
+    <h2 style="margin:0 0 var(--space-4)">What you&rsquo;ll need</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:var(--space-4)">
+      <sc-for list="{{ personalNeeds }}" as="n" hint-placeholder-count="4">
+        <div class="card" style="display:grid;gap:var(--space-1);padding:var(--space-4);background:rgba(255,252,247,.62);border:1px solid rgba(24,92,93,.09);border-radius:14px;box-shadow:0 1px 2px rgba(32,37,38,.03);transition:background 200ms ease,border-color 200ms ease,box-shadow 200ms ease,transform 200ms ease" style-hover="background:rgba(255,255,255,.9);border-color:rgba(24,92,93,.26);box-shadow:0 6px 18px rgba(32,37,38,.08);transform:translateY(-2px) scale(1.012)">
+          <div class="card-title" style="margin:0;font-size:16px;line-height:1.25">{{ n.title }}</div>
+          <p class="card-body" style="margin:0;font-size:13px;line-height:1.5">{{ n.body }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-divider)">
+    <h2 style="margin:0 0 var(--space-4)">How it works</h2>
+    <ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-4)">
+      <sc-for list="{{ personalSteps }}" as="s" hint-placeholder-count="3">
+        <li style="display:grid;gap:var(--space-1)">
+          <span style="font-family:var(--font-heading);font-weight:600;font-size:28px;line-height:1.1;color:var(--c-coral-deep)">{{ s.n }}</span>
+          <span style="font-size:15px;font-weight:600">{{ s.title }}</span>
+          <span class="text-muted" style="font-size:13px;line-height:1.45">{{ s.body }}</span>
+        </li>
+      </sc-for>
+    </ol>
+  </section>
+
+  <div style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-divider);display:flex;gap:var(--space-3);flex-wrap:wrap">
+    <button class="btn btn-primary" onClick="{{ onStart }}" style="padding:var(--space-3) var(--space-6)">Apply for loan</button>
+  </div>
+  </div>
+</main>
+</sc-if>
+
+<sc-if value="{{ isBusiness }}" hint-placeholder-val="{{ false }}">
+<main style="position:relative;isolation:isolate;padding:var(--space-8) var(--space-6)">
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(46% 18% at 78% 2%, rgba(221,242,239,.95), rgba(221,242,239,0) 70%),radial-gradient(36% 13% at 97% 11%, rgba(246,216,204,.78), rgba(246,216,204,0) 72%),radial-gradient(34% 10% at 54% 16%, rgba(242,198,109,.30), rgba(242,198,109,0) 74%),radial-gradient(44% 13% at 4% 25%, rgba(221,242,239,.72), rgba(221,242,239,0) 74%),radial-gradient(40% 12% at 92% 36%, rgba(246,216,204,.52), rgba(246,216,204,0) 74%),radial-gradient(52% 15% at 20% 48%, rgba(221,242,239,.72), rgba(221,242,239,0) 74%),radial-gradient(34% 10% at 95% 57%, rgba(242,198,109,.26), rgba(242,198,109,0) 74%),radial-gradient(50% 14% at 62% 68%, rgba(221,242,239,.62), rgba(221,242,239,0) 74%),radial-gradient(40% 12% at 6% 78%, rgba(246,216,204,.48), rgba(246,216,204,0) 74%),radial-gradient(46% 13% at 86% 88%, rgba(221,242,239,.58), rgba(221,242,239,0) 74%),radial-gradient(38% 11% at 30% 96%, rgba(242,198,109,.22), rgba(242,198,109,0) 74%),linear-gradient(180deg, #FFF9F3, #FFF9F3)"></div>
+  <div style="max-width:1080px;margin:0 auto">
+  <h6 style="margin:0 0 var(--space-2);color:var(--color-accent-700)">Business finance</h6>
+  <h1 style="margin:0 0 var(--space-4);font-size:clamp(36px,5vw,56px);line-height:1.14;max-width:14em">Flexible funding for growing businesses</h1>
+  <p style="font-size:17px;line-height:1.5;max-width:40em;margin:0 0 var(--space-6)">Funding assessed on trading cash flow, not a credit score. Registered or informal, the same three steps.</p>
+
+  <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin:0 0 var(--space-8)">
+    <button class="btn btn-primary" onClick="{{ onStartBusiness }}" style="padding:var(--space-3) var(--space-6)">Apply for loan</button>
+    <button class="btn btn-ghost" onClick="{{ goBusinessInfo }}" style="padding:var(--space-3) var(--space-4);color:var(--c-coral-deep)" style-hover="background:var(--c-peach)">View funding information</button>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-4)">
+    <sc-for list="{{ businessProducts }}" as="p" hint-placeholder-count="3">
+      <button onClick="{{ p.onOpen }}" style="display:grid;grid-template-rows:auto auto auto 1fr;gap:var(--space-2);padding:var(--space-4);text-align:left;width:100%;font-family:inherit;color:#3C4545;cursor:pointer;background:rgba(255,252,247,.62);border:1px solid rgba(24,92,93,.09);border-top:3px solid var(--c-teal-fresh);border-radius:14px;box-shadow:0 1px 2px rgba(32,37,38,.03);transition:background 200ms ease,border-color 200ms ease,box-shadow 200ms ease,transform 200ms ease" style-hover="background:rgba(255,255,255,.9);border-color:rgba(24,92,93,.26);border-top-color:var(--c-teal);box-shadow:0 6px 18px rgba(32,37,38,.08);transform:translateY(-2px) scale(1.012)">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3)">
+          <span class="card-title" style="margin:0;font-size:16px;line-height:1.25">{{ p.title }}</span>
+          <span aria-hidden="true" style="color:var(--c-teal);font-size:16px">&rarr;</span>
+        </div>
+        <p class="card-body" style="margin:0;font-size:13px;line-height:1.5">{{ p.body }}</p>
+        <ul style="margin:0;padding-left:var(--space-4);display:grid;gap:2px;font-size:12.5px;line-height:1.5;color:#747F7E">
+          <sc-for list="{{ p.uses }}" as="u" hint-placeholder-count="4"><li>{{ u }}</li></sc-for>
+        </ul>
+        <dl style="margin:var(--space-1) 0 0;display:grid;grid-template-columns:auto 1fr;gap:var(--space-1) var(--space-3);font-size:12px;align-content:end">
+          <dt style="color:var(--c-teal);font-weight:600">Funding range</dt><dd style="margin:0">{{ p.range }}</dd>
+          <dt style="color:var(--c-teal);font-weight:600">Term</dt><dd style="margin:0">{{ p.term }}</dd>
+          <dt style="color:var(--c-teal);font-weight:600">Rate</dt><dd style="margin:0">{{ p.rate }}</dd>
+          <dt style="color:var(--c-teal);font-weight:600">Security</dt><dd style="margin:0">{{ p.security }}</dd>
+          <dt style="color:var(--c-teal);font-weight:600">Repayment</dt><dd style="margin:0">{{ p.structure }}</dd>
+        </dl>
+      </button>
+    </sc-for>
+  </div>
+  <p class="text-muted" style="font-size:12px;margin:var(--space-3) 0 0">{{ marketRangeNote }}</p>
+
+  <section style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-divider)">
+    <h2 style="margin:0 0 var(--space-2)">Who can apply?</h2>
+    <p style="font-size:15px;line-height:1.5;max-width:44em;margin:0 0 var(--space-4)">Registration is not a precondition. Eligibility is judged on trading evidence.</p>
+    <div data-col2="" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-6)">
+      <div>
+        <h6 style="margin:0 0 var(--space-2)">Business types</h6>
+        <ul style="margin:0;padding-left:var(--space-4);display:grid;gap:var(--space-1);font-size:14px">
+          <li>Registered business</li>
+          <li>Sole trader</li>
+          <li>Informal micro or small business</li>
+          <li>Self-employed business operator</li>
+        </ul>
+      </div>
+      <div>
+        <h6 style="margin:0 0 var(--space-2)">What we look for</h6>
+        <ul style="margin:0;padding-left:var(--space-4);display:grid;gap:var(--space-1);font-size:14px">
+          <li>Active trading history</li>
+          <li>Evidence of revenue or transaction activity</li>
+          <li>Owner or signatory identity verification</li>
+          <li>Demonstrable business cash flow</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-divider)">
+    <h2 style="margin:0 0 var(--space-4)">What you’ll need</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:var(--space-4)">
+      <sc-for list="{{ businessNeeds }}" as="n" hint-placeholder-count="4">
+        <div class="card" style="display:grid;gap:var(--space-1);padding:var(--space-4);background:rgba(255,252,247,.62);border:1px solid rgba(24,92,93,.09);border-radius:14px;box-shadow:0 1px 2px rgba(32,37,38,.03);transition:background 200ms ease,border-color 200ms ease,box-shadow 200ms ease,transform 200ms ease" style-hover="background:rgba(255,255,255,.9);border-color:rgba(24,92,93,.26);box-shadow:0 6px 18px rgba(32,37,38,.08);transform:translateY(-2px) scale(1.012)">
+          <div class="card-title" style="margin:0;font-size:16px;line-height:1.25">{{ n.title }}</div>
+          <p class="card-body" style="margin:0;font-size:13px;line-height:1.5">{{ n.body }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-divider)">
+    <h2 style="margin:0 0 var(--space-4)">How it works</h2>
+    <ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-4);counter-reset:s">
+      <sc-for list="{{ businessSteps }}" as="s" hint-placeholder-count="3">
+        <li style="display:grid;gap:var(--space-1)">
+          <span style="font-family:var(--font-heading);font-weight:600;font-size:28px;line-height:1.1;color:var(--color-accent-700)">{{ s.n }}</span>
+          <span style="font-size:15px;font-weight:600">{{ s.title }}</span>
+          <span class="text-muted" style="font-size:13px;line-height:1.45">{{ s.body }}</span>
+        </li>
+      </sc-for>
+    </ol>
+  </section>
+
+  <section style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-divider)">
+    <h2 style="margin:0 0 var(--space-4)">Clear terms</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:var(--space-4)">
+      <sc-for list="{{ businessTerms }}" as="t" hint-placeholder-count="4">
+        <div class="card" style="display:grid;gap:var(--space-1);padding:var(--space-4);background:rgba(255,252,247,.62);border:1px solid rgba(24,92,93,.09);border-radius:14px;box-shadow:0 1px 2px rgba(32,37,38,.03);transition:background 200ms ease,border-color 200ms ease,box-shadow 200ms ease,transform 200ms ease" style-hover="background:rgba(255,255,255,.9);border-color:rgba(24,92,93,.26);box-shadow:0 6px 18px rgba(32,37,38,.08);transform:translateY(-2px) scale(1.012)">
+          <div class="card-title" style="margin:0;font-size:16px;line-height:1.25">{{ t.title }}</div>
+          <p class="card-body" style="margin:0;font-size:13px;line-height:1.5">{{ t.body }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <div style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-divider);display:flex;gap:var(--space-3);flex-wrap:wrap">
+    <button class="btn btn-primary" onClick="{{ onStartBusiness }}" style="padding:var(--space-3) var(--space-6)">Apply for loan</button>
+  </div>
+  </div>
+</main>
+</sc-if>
+
+<sc-if value="{{ isBizAssess }}" hint-placeholder-val="{{ false }}">
+<main style="max-width:1120px;margin:0 auto;padding:var(--space-6) var(--space-6) var(--space-8)">
+  <h6 style="margin:0 0 var(--space-2);color:var(--color-accent-700)">Business assessment</h6>
+  <h2 style="margin:0 0 var(--space-6)">{{ bizStepTitle }}</h2>
+  <sc-if value="{{ hasBizStepBlurb }}" hint-placeholder-val="{{ true }}">
+    <p class="text-muted" style="font-size:13px;margin:calc(-1 * var(--space-6)) 0 var(--space-6);max-width:56em">{{ bizStepBlurb }}</p>
+  </sc-if>
+
+  <ol aria-label="Assessment progress" style="list-style:none;margin:0 0 var(--space-6);padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-2)">
+    <sc-for list="{{ bizProgressSteps }}" as="p" hint-placeholder-count="3">
+      <li style="{{ p.style }}"><span style="font-size:11px;letter-spacing:.08em;opacity:.7">STEP {{ p.n }} OF 3</span><span style="display:block;font-size:14px;font-weight:600;margin-top:4px">{{ p.label }}</span></li>
+    </sc-for>
+  </ol>
+
+  <sc-if value="{{ bizHasErrors }}" hint-placeholder-val="{{ false }}">
+    <div role="alert" style="border:1px solid var(--color-accent);background:var(--color-accent-100);padding:var(--space-3) var(--space-4);margin:0 0 var(--space-6);border-radius:var(--radius-md)">
+      <strong style="font-size:13px;display:block;margin-bottom:var(--space-1)">Please complete the following before continuing</strong>
+      <ul style="margin:0;padding-left:var(--space-4);font-size:13px">
+        <sc-for list="{{ bizErrors }}" as="e" hint-placeholder-count="2"><li>{{ e }}</li></sc-for>
+      </ul>
+    </div>
+  </sc-if>
+
+  <div style="max-width:820px">
+
+  <sc-if value="{{ isBizStep1 }}" hint-placeholder-val="{{ false }}">
+    <section style="display:grid;gap:var(--space-6)">
+      <sc-if value="{{ bizDemoMode }}" hint-placeholder-val="{{ false }}">
+        <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap">
+          <div>
+            <div class="card-title" style="margin:0">Demonstration business loaded</div>
+            <p class="text-muted" style="margin:2px 0 0;font-size:12px">{{ bizDemoSummary }}</p>
+          </div>
+          <button class="btn btn-secondary" onClick="{{ onDemoBusiness }}" style="font-size:13px">Reload demo</button>
+        </div>
+      </sc-if>
+
+      <div data-col2="" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4)">
+        <div class="field">
+          <label for="biz-country">Country</label>
+          <select class="input" id="biz-country" value="{{ bizForm.country }}" onChange="{{ setBizCountry }}">
+            <option value="">Select a country</option>
+            <sc-for list="{{ bizCountryOptions }}" as="c" hint-placeholder-count="6"><option value="{{ c.name }}">{{ c.name }}</option></sc-for>
+          </select>
+        </div>
+        <div class="field">
+          <label for="biz-type">Business type</label>
+          <select class="input" id="biz-type" value="{{ bizForm.businessType }}" onChange="{{ setBizType }}">
+            <option value="">Select</option>
+            <sc-for list="{{ businessTypeNames }}" as="t" hint-placeholder-count="4"><option value="{{ t }}">{{ t }}</option></sc-for>
+          </select>
+        </div>
+        <div class="field">
+          <label for="biz-sector">Sector</label>
+          <select class="input" id="biz-sector" value="{{ bizForm.sector }}" onChange="{{ setBizSector }}">
+            <option value="">Select</option>
+            <sc-for list="{{ sectorNames }}" as="t" hint-placeholder-count="6"><option value="{{ t }}">{{ t }}</option></sc-for>
+          </select>
+        </div>
+        <div class="field">
+          <label for="biz-trading">Time in operation</label>
+          <select class="input" id="biz-trading" value="{{ bizForm.tradingHistory }}" onChange="{{ setBizTrading }}">
+            <option value="">Select</option>
+            <sc-for list="{{ tradingNames }}" as="t" hint-placeholder-count="4"><option value="{{ t }}">{{ t }}</option></sc-for>
+          </select>
+        </div>
+      </div>
+
+      <label style="display:inline-flex;align-items:flex-start;gap:var(--space-2);cursor:pointer">
+        <input type="checkbox" checked="{{ bizForm.applicantIsOwner }}" onChange="{{ setBizOwner }}" style="margin-top:3px">
+        <span style="font-size:14px">I am the owner or sole proprietor of this business.</span>
+      </label>
+
+      <div style="border-top:1px solid var(--color-divider);padding-top:var(--space-6);display:grid;gap:var(--space-4)">
+        <sc-if value="{{ bizDemoMode }}" hint-placeholder-val="{{ false }}">
+          <button class="btn btn-ghost" onClick="{{ onSimulateBizVerified }}" style="justify-self:start;font-size:13px">Simulate all as verified</button>
+        </sc-if>
+        <div style="display:grid;gap:var(--space-3)">
+          <sc-for list="{{ bizKycChecks }}" as="c" hint-placeholder-count="6">
+            <div data-col2="" style="display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:var(--space-3);align-items:center">
+              <div>
+                <div style="display:flex;align-items:baseline;gap:var(--space-2);flex-wrap:wrap">
+                  <span style="font-size:14px;font-weight:600">{{ c.label }}</span>
+                  <span class="tag" style="{{ c.tagStyle }}">{{ c.relevanceLabel }}</span>
+                </div>
+                <p class="text-muted" style="font-size:11px;margin:2px 0 0;line-height:1.4">{{ c.methodsLine }}</p>
+              </div>
+              <select class="input" aria-label="{{ c.label }}" value="{{ c.state }}" onChange="{{ c.onChange }}" disabled="{{ c.locked }}">
+                <sc-for list="{{ c.options }}" as="o" hint-placeholder-count="3"><option value="{{ o }}">{{ o }}</option></sc-for>
+              </select>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isBizStep2 }}" hint-placeholder-val="{{ false }}">
+    <section style="display:grid;gap:var(--space-6)">
+      <div data-col2="" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4)">
+        <sc-for list="{{ bizFinanceFields }}" as="m" hint-placeholder-count="3">
+          <div class="field">
+            <label for="{{ m.id }}">{{ m.label }}</label>
+            <input class="input" id="{{ m.id }}" type="text" inputmode="numeric" value="{{ m.value }}" onChange="{{ m.onChange }}" aria-describedby="{{ m.hintId }}">
+            <p id="{{ m.hintId }}" class="text-muted" style="font-size:11px;margin:var(--space-1) 0 0;line-height:1.4">{{ m.hint }}</p>
+          </div>
+        </sc-for>
+        <div class="field">
+          <label for="biz-consistency">Cash-flow consistency</label>
+          <select class="input" id="biz-consistency" value="{{ bizForm.cashFlowConsistency }}" onChange="{{ setBizConsistency }}">
+            <option value="">Select</option>
+            <sc-for list="{{ consistencyNames }}" as="c" hint-placeholder-count="3"><option value="{{ c }}">{{ c }}</option></sc-for>
+          </select>
+          <p class="text-muted" style="font-size:11px;margin:var(--space-1) 0 0;line-height:1.4">Seasonal trading is normal and is not treated as a negative.</p>
+        </div>
+      </div>
+
+      <div class="card" style="display:grid;gap:var(--space-2)">
+        <div class="card-title" style="margin:0">Your business today</div>
+        <p class="text-muted" style="font-size:11px;margin:0;line-height:1.45">Operating cash surplus is revenue less operating expenses. Available cash flow takes off what you already repay.</p>
+        <dl style="margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:var(--space-4)">
+          <sc-for list="{{ bizPreRows }}" as="p" hint-placeholder-count="2">
+            <div>
+              <dt class="text-muted" style="font-size:11px;letter-spacing:.05em;text-transform:uppercase">{{ p.label }}</dt>
+              <dd style="margin:var(--space-1) 0 0;font-family:var(--font-heading);font-weight:600;font-size:26px;line-height:1.15">{{ p.value }}</dd>
+              <dd class="text-muted" style="margin:2px 0 0;font-size:11px;line-height:1.4">{{ p.note }}</dd>
+            </div>
+          </sc-for>
+        </dl>
+      </div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isBizStep3 }}" hint-placeholder-val="{{ false }}">
+    <section style="display:grid;gap:var(--space-6)">
+      <div>
+        <h5 style="margin:0 0 var(--space-3)">Which product fits?</h5>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-3)">
+          <sc-for list="{{ productChoices }}" as="p" hint-placeholder-count="3">
+            <button onClick="{{ p.onSelect }}" style="{{ p.style }}">
+              <span style="font-size:15px;font-weight:600;display:block">{{ p.name }}</span>
+              <span style="font-size:12px;line-height:1.4;display:block;margin-top:4px;opacity:.8">{{ p.summary }}</span>
+              <span style="font-size:11px;line-height:1.4;display:block;margin-top:8px;opacity:.7">{{ p.terms }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+
+      <sc-if value="{{ hasProduct }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid;gap:var(--space-6)">
+          <div data-col2="" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4)">
+            <sc-for list="{{ bizLoanFields }}" as="m" hint-placeholder-count="3">
+              <div class="field">
+                <label for="{{ m.id }}">{{ m.label }}</label>
+                <input class="input" id="{{ m.id }}" type="text" inputmode="numeric" value="{{ m.value }}" onChange="{{ m.onChange }}" aria-describedby="{{ m.hintId }}">
+                <p id="{{ m.hintId }}" class="text-muted" style="font-size:11px;margin:var(--space-1) 0 0;line-height:1.4">{{ m.hint }}</p>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="border-top:1px solid var(--color-divider);padding-top:var(--space-4)">
+            <h5 style="margin:0 0 var(--space-3)">{{ productFieldsTitle }}</h5>
+            <div data-col2="" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4)">
+              <sc-for list="{{ productExtraFields }}" as="m" hint-placeholder-count="2">
+                <div class="field">
+                  <label for="{{ m.id }}">{{ m.label }}</label>
+                  <sc-if value="{{ m.isSelect }}" hint-placeholder-val="{{ false }}">
+                    <select class="input" id="{{ m.id }}" value="{{ m.value }}" onChange="{{ m.onChange }}">
+                      <option value="">Select</option>
+                      <sc-for list="{{ m.options }}" as="o" hint-placeholder-count="3"><option value="{{ o }}">{{ o }}</option></sc-for>
+                    </select>
+                  </sc-if>
+                  <sc-if value="{{ m.isMoney }}" hint-placeholder-val="{{ true }}">
+                    <input class="input" id="{{ m.id }}" type="text" inputmode="numeric" value="{{ m.value }}" onChange="{{ m.onChange }}">
+                  </sc-if>
+                  <p class="text-muted" style="font-size:11px;margin:var(--space-1) 0 0;line-height:1.4">{{ m.hint }}</p>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div class="card" style="display:grid;gap:var(--space-2)">
+            <div class="card-title" style="margin:0">What this funding would cost</div>
+            <dl style="margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--space-4)">
+              <sc-for list="{{ bizSummaryRows }}" as="p" hint-placeholder-count="5">
+                <div>
+                  <dt class="text-muted" style="font-size:11px;letter-spacing:.05em;text-transform:uppercase">{{ p.label }}</dt>
+                  <dd style="margin:var(--space-1) 0 0;font-family:var(--font-heading);font-weight:600;font-size:26px;line-height:1.15">{{ p.value }}</dd>
+                  <dd class="text-muted" style="margin:2px 0 0;font-size:11px;line-height:1.4">{{ p.note }}</dd>
+                </div>
+              </sc-for>
+            </dl>
+            <details style="font-size:12px">
+              <summary style="cursor:pointer;color:var(--color-accent-700)">How is repayment capacity worked out?</summary>
+              <p class="text-muted" style="margin:var(--space-2) 0 0;line-height:1.55">{{ capacityFormula }}</p>
+            </details>
+          </div>
+        </div>
+      </sc-if>
+    </section>
+  </sc-if>
+
+  </div>
+
+  <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-8);padding-top:var(--space-4);border-top:1px solid var(--color-divider)">
+    <button class="btn btn-secondary" onClick="{{ onBizBack }}" style="padding:var(--space-2) var(--space-4)">Back</button>
+    <sc-if value="{{ bizShowNext }}" hint-placeholder-val="{{ true }}">
+      <button class="btn btn-primary" onClick="{{ onBizNext }}" style="padding:var(--space-2) var(--space-4)">{{ bizNextLabel }}</button>
+    </sc-if>
+    <sc-if value="{{ bizSubmittedHere }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;align-items:baseline;gap:6px;flex-wrap:wrap">
+        <span style="font-size:14px;font-weight:600;line-height:1.5;color:var(--c-teal)">Submitted &mdash;</span>
+        <span style="font-size:14px;line-height:1.5;color:#747F7E">Your application is being reviewed. Approval is expected within 2–4 working days.</span>
+      </div>
+    </sc-if>
+  </div>
+</main>
+</sc-if>
+
+<sc-if value="{{ isBizResults }}" hint-placeholder-val="{{ false }}">
+<main style="max-width:1080px;margin:0 auto;padding:var(--space-6) var(--space-6) var(--space-8)">
+  <h6 style="margin:0 0 var(--space-2);color:var(--color-accent-700)">Your business assessment</h6>
+  <div style="{{ bizRecStyle }}">
+    <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.8">Assessment result</div>
+    <div style="font-family:var(--font-heading);font-size:clamp(30px,4vw,48px);font-weight:700;line-height:1.18;margin:var(--space-2) 0 var(--space-2)">{{ bizRecTitle }}</div>
+    <p style="margin:0;font-size:14px;max-width:52em;line-height:1.5;opacity:.9">{{ bizRecNote }}</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-4);margin-top:var(--space-4)">
+    <sc-for list="{{ bizResultMetrics }}" as="k" hint-placeholder-count="4">
+      <div class="card">
+        <div style="font-size:11px;letter-spacing:.05em;text-transform:uppercase;opacity:.6">{{ k.label }}</div>
+        <div style="font-family:var(--font-heading);font-weight:600;font-size:30px;line-height:1.15">{{ k.value }}</div>
+        <div class="text-muted" style="font-size:11px;line-height:1.35;margin:0">{{ k.note }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div class="card" style="margin-top:var(--space-4)">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap">
+      <div class="card-title">{{ bizKycStatusLabel }}</div>
+      <span class="tag" style="{{ bizKycStatusStyle }}">Simulated</span>
+    </div>
+    <p class="card-body" style="margin:0">{{ bizKycStatusNote }}</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-2);margin-top:var(--space-2)">
+      <sc-for list="{{ bizKycResultChecks }}" as="c" hint-placeholder-count="6">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-2);font-size:12px">
+          <span>{{ c.label }}</span>
+          <span class="tag" style="{{ c.stateStyle }}">{{ c.state }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <p class="text-muted" style="margin:0;font-size:11px;line-height:1.5">Recorded separately from repayment capacity. Verification state does not change the recommendation above.</p>
+  </div>
+
+  <section style="margin-top:var(--space-8)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:var(--space-6)">
+      <div>
+        <h6 style="margin:0 0 var(--space-3)">Positive indicators</h6>
+        <sc-if value="{{ bizHasPositives }}" hint-placeholder-val="{{ true }}">
+          <ul style="margin:0;padding:0;list-style:none;display:grid;gap:var(--space-2)">
+            <sc-for list="{{ bizPositives }}" as="p" hint-placeholder-count="3">
+              <li style="font-size:14px;padding:var(--space-2) var(--space-3);border-left:1px solid var(--color-accent-700);background:var(--color-accent-100);border-radius:var(--radius-md)">{{ p }}</li>
+            </sc-for>
+          </ul>
+        </sc-if>
+        <sc-if value="{{ bizNoPositives }}" hint-placeholder-val="{{ false }}">
+          <p class="text-muted" style="font-size:13px;margin:0">None recorded.</p>
+        </sc-if>
+      </div>
+      <div>
+        <h6 style="margin:0 0 var(--space-3)">Business and affordability concerns</h6>
+        <sc-if value="{{ bizHasConcerns }}" hint-placeholder-val="{{ true }}">
+          <ul style="margin:0;padding:0;list-style:none;display:grid;gap:var(--space-2)">
+            <sc-for list="{{ bizConcerns }}" as="c" hint-placeholder-count="2">
+              <li style="font-size:14px;padding:var(--space-2) var(--space-3);border-left:1px solid var(--color-text);background:var(--color-neutral-200);border-radius:var(--radius-md)">{{ c }}</li>
+            </sc-for>
+          </ul>
+        </sc-if>
+        <sc-if value="{{ bizNoConcerns }}" hint-placeholder-val="{{ false }}">
+          <p class="text-muted" style="font-size:13px;margin:0">None recorded.</p>
+        </sc-if>
+      </div>
+      <div>
+        <h6 style="margin:0 0 var(--space-3)">Unavailable information</h6>
+        <sc-if value="{{ bizHasUnavailable }}" hint-placeholder-val="{{ true }}">
+          <ul style="margin:0;padding:0;list-style:none;display:grid;gap:var(--space-2)">
+            <sc-for list="{{ bizUnavailableList }}" as="u" hint-placeholder-count="2">
+              <li style="font-size:14px;padding:var(--space-2) var(--space-3);border-left:2px dashed var(--color-neutral-500)">{{ u }}</li>
+            </sc-for>
+          </ul>
+          <p class="text-muted" style="font-size:12px;margin:var(--space-2) 0 0;line-height:1.45">Recorded as absent, never as a negative indicator.</p>
+        </sc-if>
+        <sc-if value="{{ bizNoUnavailable }}" hint-placeholder-val="{{ false }}">
+          <p class="text-muted" style="font-size:13px;margin:0">All sources offered were available.</p>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top:var(--space-8)">
+    <h3 style="margin:0 0 var(--space-3)">Why did I receive this result?</h3>
+    <div style="border-left:1px solid var(--color-accent);padding:var(--space-1) 0 var(--space-1) var(--space-4);display:grid;gap:var(--space-3);max-width:58em">
+      <sc-for list="{{ bizExplanation }}" as="line" hint-placeholder-count="3">
+        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">{{ line }}</p>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="margin-top:var(--space-8);padding-top:var(--space-4);border-top:1px solid var(--color-divider);display:flex;gap:var(--space-3);flex-wrap:wrap">
+    <button class="btn btn-primary" onClick="{{ onBizRequestReview }}" style="padding:var(--space-3) var(--space-6)">Request human review</button>
+    <button class="btn btn-secondary" onClick="{{ onBizAdjust }}" style="padding:var(--space-3) var(--space-6)">Adjust funding request</button>
+    <button class="btn btn-secondary" onClick="{{ onBizRestart }}" style="padding:var(--space-3) var(--space-6)">Start again</button>
+  </section>
+  <sc-if value="{{ bizReviewRequested }}" hint-placeholder-val="{{ false }}">
+    <div role="status" class="card" style="margin-top:var(--space-4);max-width:58em">
+      <div class="card-title">Human review requested — reference {{ bizReviewRef }}</div>
+      <p class="card-body" style="margin:0">Confirmed locally only. No institution has been contacted and no data has left this browser session.</p>
+    </div>
+  </sc-if>
+
+  <section style="margin-top:var(--space-8);padding-top:var(--space-4);border-top:1px solid var(--color-divider)">
+    <button class="btn btn-ghost" onClick="{{ onToggleBizTrace }}" style="font-size:14px;padding-left:0">{{ bizTraceToggleLabel }}</button>
+    <sc-if value="{{ showBizTrace }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:var(--space-3);border:1px solid var(--color-divider);border-radius:var(--radius-md)">
+        <sc-for list="{{ bizTrace }}" as="t" hint-placeholder-count="5">
+          <div style="{{ t.style }}">
+            <div style="font-family:var(--font-heading);font-size:13px;min-width:32px">{{ t.id }}</div>
+            <div>
+              <div style="font-size:13px;line-height:1.45">{{ t.text }}</div>
+              <div class="text-muted" style="font-size:12px;margin-top:2px">{{ t.detail }}</div>
+            </div>
+            <div style="font-size:11px;letter-spacing:.05em;text-transform:uppercase;opacity:.6;text-align:right;min-width:76px">{{ t.firedLabel }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+  </section>
+
+  <p class="text-muted" style="font-size:12px;margin:var(--space-8) 0 0;max-width:58em;line-height:1.55">An assessment result produced by stated rules — not a finance approval, not a refusal, and not a regulated affordability assessment.</p>
+</main>
+</sc-if>
+
+<sc-if value="{{ isAssess }}" hint-placeholder-val="{{ false }}">
+<main style="max-width:1120px;margin:0 auto;padding:var(--space-6) var(--space-6) var(--space-8)">
+  <h6 style="margin:0 0 var(--space-2);color:var(--color-accent-700)">Personal assessment</h6>
+  <h2 style="margin:0 0 var(--space-6)">{{ stepTitle }}</h2>
+  <sc-if value="{{ hasStepBlurb }}" hint-placeholder-val="{{ true }}">
+    <p class="text-muted" style="font-size:13px;margin:calc(-1 * var(--space-6)) 0 var(--space-6);max-width:56em">{{ stepBlurb }}</p>
+  </sc-if>
+
+  <ol aria-label="Assessment progress" style="list-style:none;margin:0 0 var(--space-6);padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-2)">
+    <sc-for list="{{ progressSteps }}" as="p" hint-placeholder-count="3">
+      <li style="{{ p.style }}"><span style="font-size:11px;letter-spacing:.08em;opacity:.7">STEP {{ p.n }} OF 3</span><span style="display:block;font-size:14px;font-weight:600;margin-top:4px">{{ p.label }}</span></li>
+    </sc-for>
+  </ol>
+
+  <sc-if value="{{ hasErrors }}" hint-placeholder-val="{{ false }}">
+    <div role="alert" style="border:1px solid var(--color-accent);background:var(--color-accent-100);padding:var(--space-3) var(--space-4);margin:0 0 var(--space-6);border-radius:var(--radius-md)">
+      <strong style="font-size:13px;display:block;margin-bottom:var(--space-1)">Please complete the following before continuing</strong>
+      <ul style="margin:0;padding-left:var(--space-4);font-size:13px">
+        <sc-for list="{{ errors }}" as="e" hint-placeholder-count="2"><li>{{ e }}</li></sc-for>
+      </ul>
+    </div>
+  </sc-if>
+
+  <div style="max-width:820px">
+
+  <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ false }}">
+    <section style="display:grid;gap:var(--space-6)">
+      <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ false }}">
+        <div class="card" style="display:grid;gap:var(--space-2)">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap">
+            <div class="card-title" style="margin:0">Prefill with a demo applicant</div>
+            <span class="tag tag-outline">Demonstration</span>
+          </div>
+          <div style="display:flex;gap:var(--space-2);flex-wrap:wrap">
+            <sc-for list="{{ demoProfiles }}" as="d" hint-placeholder-count="5">
+              <button onClick="{{ d.onLoad }}" style="{{ d.style }}" title="{{ d.summary }}">{{ d.name }}</button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ demoLoadedName }}" hint-placeholder-val="{{ false }}">
+            <p style="font-size:12px;margin:0;color:var(--color-accent-700)">{{ demoLoadedName }} loaded across all steps. Everything stays editable.</p>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <div data-col2="" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4)">
+        <div class="field">
+          <label for="country">Country</label>
+          <select class="input" id="country" value="{{ form.country }}" onChange="{{ setCountry }}">
+            <option value="">Select a country</option>
+            <sc-for list="{{ countryOptions }}" as="c" hint-placeholder-count="6"><option value="{{ c.name }}">{{ c.name }}</option></sc-for>
+          </select>
+        </div>
+        <div class="field">
+          <label for="employment">Employment</label>
+          <select class="input" id="employment" value="{{ form.employmentType }}" onChange="{{ setEmployment }}">
+            <option value="">Select employment type</option>
+            <sc-for list="{{ employmentNames }}" as="e" hint-placeholder-count="5"><option value="{{ e }}">{{ e }}</option></sc-for>
+          </select>
+        </div>
+      </div>
+
+      <label style="display:inline-flex;align-items:flex-start;gap:var(--space-2);cursor:pointer">
+        <input type="checkbox" checked="{{ form.is18 }}" onChange="{{ setIs18 }}" style="margin-top:3px">
+        <span style="font-size:14px">I am 18 or older.</span>
+      </label>
+
+      <div style="border-top:1px solid var(--color-divider);padding-top:var(--space-6);display:grid;gap:var(--space-4)">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap">
+          <h5 style="margin:0">Verification</h5>
+          <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ false }}">
+            <button class="btn btn-ghost" onClick="{{ onSimulateVerified }}" style="font-size:13px">Simulate all as verified</button>
+          </sc-if>
+        </div>
+        <p class="text-muted" style="font-size:12px;margin:0;line-height:1.45;max-width:44em">{{ kycSimulationNote }}</p>
+
+        <div class="card" style="display:grid;gap:var(--space-2)">
+          <sc-for list="{{ kycAuto }}" as="c" hint-placeholder-count="2">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-2);font-size:13px">
+              <span>{{ c.label }}</span>
+              <span class="tag" style="{{ c.stateStyle }}">{{ c.state }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:grid;gap:var(--space-3)">
+          <sc-for list="{{ kycEditable }}" as="c" hint-placeholder-count="5">
+            <div data-col2="" style="display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:var(--space-3);align-items:center">
+              <div>
+                <div style="display:flex;align-items:baseline;gap:var(--space-2);flex-wrap:wrap">
+                  <span style="font-size:14px;font-weight:600">{{ c.label }}</span>
+                  <span class="tag" style="{{ c.tagStyle }}">{{ c.relevanceLabel }}</span>
+                </div>
+                <p class="text-muted" style="font-size:11px;margin:2px 0 0;line-height:1.4">{{ c.methodsLine }}</p>
+              </div>
+              <select class="input" aria-label="{{ c.label }}" value="{{ c.state }}" onChange="{{ c.onChange }}" disabled="{{ c.locked }}">
+                <sc-for list="{{ c.options }}" as="o" hint-placeholder-count="3"><option value="{{ o }}">{{ o }}</option></sc-for>
+              </select>
+            </div>
+          </sc-for>
+        </div>
+        <p class="text-muted" style="font-size:11px;margin:0;line-height:1.5;max-width:44em">Verification is kept separate from creditworthiness. Country only changes which methods are shown.</p>
+      </div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+    <section style="display:grid;gap:var(--space-6)">
+      <div data-col2="" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4)">
+        <sc-for list="{{ financeFields }}" as="m" hint-placeholder-count="3">
+          <div class="field">
+            <label for="{{ m.id }}">{{ m.label }}</label>
+            <input class="input" id="{{ m.id }}" type="text" inputmode="numeric" value="{{ m.value }}" onChange="{{ m.onChange }}" aria-describedby="{{ m.hintId }}">
+            <p id="{{ m.hintId }}" class="text-muted" style="font-size:11px;margin:var(--space-1) 0 0;line-height:1.4">{{ m.hint }}</p>
+          </div>
+        </sc-for>
+        <div class="field">
+          <label for="regularity">Income regularity</label>
+          <select class="input" id="regularity" value="{{ form.incomeRegularity }}" onChange="{{ setRegularity }}">
+            <option value="">Select</option>
+            <sc-for list="{{ regularityNames }}" as="r" hint-placeholder-count="3"><option value="{{ r }}">{{ r }}</option></sc-for>
+          </select>
+          <p class="text-muted" style="font-size:11px;margin:var(--space-1) 0 0;line-height:1.4">How predictable your income is month to month.</p>
+        </div>
+      </div>
+
+      <div class="card" style="display:grid;gap:var(--space-2)">
+        <div class="card-title" style="margin:0">Where you stand today</div>
+        <dl style="margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:var(--space-4)">
+          <sc-for list="{{ preLoanRows }}" as="p" hint-placeholder-count="2">
+            <div>
+              <dt class="text-muted" style="font-size:11px;letter-spacing:.05em;text-transform:uppercase">{{ p.label }}</dt>
+              <dd style="margin:var(--space-1) 0 0;font-family:var(--font-heading);font-weight:600;font-size:26px;line-height:1.15">{{ p.value }}</dd>
+              <dd class="text-muted" style="margin:2px 0 0;font-size:11px;line-height:1.4">{{ p.note }}</dd>
+            </div>
+          </sc-for>
+        </dl>
+      </div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+    <section style="display:grid;gap:var(--space-6)">
+      <div>
+        <h5 style="margin:0 0 var(--space-3)">Loan product</h5>
+        <sc-if value="{{ hasLoanProductNote }}" hint-placeholder-val="{{ false }}">
+          <p class="text-muted" style="font-size:12px;margin:calc(-1 * var(--space-2)) 0 var(--space-3);line-height:1.45">{{ loanProductNote }}</p>
+        </sc-if>
+        <div data-col2="" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-3)">
+          <sc-for list="{{ personalMarketProducts }}" as="pp" hint-placeholder-count="3">
+            <button onClick="{{ pp.onSelect }}" style="{{ pp.style }}">
+              <span style="font-family:var(--font-heading);font-size:17px">{{ pp.name }}</span>
+              <span class="text-muted" style="font-size:12px;line-height:1.45">{{ pp.amountLabel }}</span>
+              <span class="text-muted" style="font-size:12px;line-height:1.45">{{ pp.termLabel }} · {{ pp.rateLabel }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+      <div data-col2="" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4)">
+        <sc-for list="{{ loanFields }}" as="m" hint-placeholder-count="3">
+          <div class="field">
+            <label for="{{ m.id }}">{{ m.label }}</label>
+            <input class="input" id="{{ m.id }}" type="text" inputmode="numeric" value="{{ m.value }}" onChange="{{ m.onChange }}" aria-describedby="{{ m.hintId }}">
+            <p id="{{ m.hintId }}" class="text-muted" style="font-size:11px;margin:var(--space-1) 0 0;line-height:1.4">{{ m.hint }}</p>
+          </div>
+        </sc-for>
+      </div>
+
+      <div class="card" style="display:grid;gap:var(--space-2)">
+        <div class="card-title" style="margin:0">What this loan would cost</div>
+        <dl style="margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--space-4)">
+          <sc-for list="{{ loanSummaryRows }}" as="p" hint-placeholder-count="5">
+            <div>
+              <dt class="text-muted" style="font-size:11px;letter-spacing:.05em;text-transform:uppercase">{{ p.label }}</dt>
+              <dd style="margin:var(--space-1) 0 0;font-family:var(--font-heading);font-weight:600;font-size:26px;line-height:1.15">{{ p.value }}</dd>
+              <dd class="text-muted" style="margin:2px 0 0;font-size:11px;line-height:1.4">{{ p.note }}</dd>
+            </div>
+          </sc-for>
+        </dl>
+      </div>
+    </section>
+  </sc-if>
+
+  <div style="display:flex;gap:var(--space-3);margin-top:var(--space-8);padding-top:var(--space-4);border-top:1px solid var(--color-divider);flex-wrap:wrap">
+    <button class="btn btn-secondary" onClick="{{ onBack }}" style="padding:var(--space-2) var(--space-4)">{{ backLabel }}</button>
+    <sc-if value="{{ showNext }}" hint-placeholder-val="{{ true }}">
+      <button class="btn btn-primary blueprint" onClick="{{ onNext }}" style="padding:var(--space-2) var(--space-4)"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>{{ nextLabel }}</button>
+    </sc-if>
+    <sc-if value="{{ submittedHere }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;align-items:baseline;gap:6px;flex-wrap:wrap">
+        <span style="font-size:14px;font-weight:600;line-height:1.5;color:var(--c-teal)">Submitted &mdash;</span>
+        <span style="font-size:14px;line-height:1.5;color:#747F7E">Your application is being reviewed. Approval is expected within 24–48 hours.</span>
+      </div>
+    </sc-if>
+  </div>
+  </div>
+</main>
+</sc-if>
+
+<sc-if value="{{ isResults }}" hint-placeholder-val="{{ false }}">
+<main style="max-width:1080px;margin:0 auto;padding:var(--space-6) var(--space-6) var(--space-8)">
+  <h6 style="margin:0 0 var(--space-2);color:var(--color-accent-700)">Your assessment</h6>
+  <div style="{{ recStyle }}">
+    <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.8">Assessment result</div>
+    <div style="font-family:var(--font-heading);font-size:clamp(30px,4vw,48px);font-weight:700;line-height:1.18;margin:var(--space-2) 0 var(--space-2)">{{ recTitle }}</div>
+    <p style="margin:0;font-size:14px;max-width:52em;line-height:1.5;opacity:.9">{{ recNote }}</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-4);margin-top:var(--space-4)">
+    <sc-for list="{{ resultMetrics }}" as="k" hint-placeholder-count="4">
+      <div class="card blueprint">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <div style="font-size:11px;letter-spacing:.05em;text-transform:uppercase;opacity:.6">{{ k.label }}</div>
+        <div style="font-family:var(--font-heading);font-weight:600;font-size:30px;line-height:1.15">{{ k.value }}</div>
+        <div class="text-muted" style="font-size:11px;line-height:1.35;margin:0">{{ k.note }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div class="card" style="margin-top:var(--space-4)">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap">
+      <div class="card-title">{{ kycStatusLabel }}</div>
+      <span class="tag" style="{{ kycStatusStyle }}">Simulated</span>
+    </div>
+    <p class="card-body" style="margin:0">{{ kycStatusNote }}</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-2);margin-top:var(--space-2)">
+      <sc-for list="{{ kycResultChecks }}" as="c" hint-placeholder-count="7">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-2);font-size:12px">
+          <span>{{ c.label }}</span>
+          <span class="tag" style="{{ c.stateStyle }}">{{ c.state }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <p class="text-muted" style="margin:0;font-size:11px;line-height:1.5">Recorded separately from affordability. Verification state does not change the recommendation above.</p>
+  </div>
+
+  <section style="margin-top:var(--space-8)">
+    <h3 style="margin:0 0 var(--space-3)">Why did I receive this result?</h3>
+    <div style="border-left:1px solid var(--color-accent);padding:var(--space-1) 0 var(--space-1) var(--space-4);display:grid;gap:var(--space-3);max-width:58em">
+      <sc-for list="{{ explanation }}" as="line" hint-placeholder-count="3">
+        <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">{{ line }}</p>
+      </sc-for>
+    </div>
+    <sc-if value="{{ showReduced }}" hint-placeholder-val="{{ false }}">
+      <div class="card blueprint" style="margin-top:var(--space-4);max-width:58em">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <div class="card-title">What would bring this within range</div>
+        <ul style="margin:0;padding-left:var(--space-4);display:grid;gap:var(--space-1);font-size:14px;line-height:1.5">
+          <li>A lower loan amount than the one requested.</li>
+          <li>A longer term, which lowers the monthly repayment.</li>
+          <li>Clearing or consolidating part of your existing commitments.</li>
+        </ul>
+        <p class="text-muted" style="margin:0;font-size:12px;line-height:1.5">No figure is quoted: setting an amount is a matter for affordability review with verified data.</p>
+      </div>
+    </sc-if>
+  </section>
+
+  <section style="margin-top:var(--space-8)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:var(--space-6)">
+      <div>
+        <h6 style="margin:0 0 var(--space-3)">Positive indicators</h6>
+        <sc-if value="{{ hasPositives }}" hint-placeholder-val="{{ true }}">
+          <ul style="margin:0;padding:0;list-style:none;display:grid;gap:var(--space-2)">
+            <sc-for list="{{ positives }}" as="p" hint-placeholder-count="3">
+              <li style="font-size:14px;padding:var(--space-2) var(--space-3);border-left:1px solid var(--color-accent-700);background:var(--color-accent-100)">{{ p }}</li>
+            </sc-for>
+          </ul>
+        </sc-if>
+        <sc-if value="{{ noPositives }}" hint-placeholder-val="{{ false }}">
+          <p class="text-muted" style="font-size:13px;margin:0">None recorded.</p>
+        </sc-if>
+      </div>
+      <div>
+        <h6 style="margin:0 0 var(--space-3)">Affordability and risk concerns</h6>
+        <sc-if value="{{ hasConcerns }}" hint-placeholder-val="{{ true }}">
+          <ul style="margin:0;padding:0;list-style:none;display:grid;gap:var(--space-2)">
+            <sc-for list="{{ concerns }}" as="c" hint-placeholder-count="2">
+              <li style="font-size:14px;padding:var(--space-2) var(--space-3);border-left:1px solid var(--color-text);background:var(--color-neutral-200)">{{ c }}</li>
+            </sc-for>
+          </ul>
+        </sc-if>
+        <sc-if value="{{ noConcerns }}" hint-placeholder-val="{{ false }}">
+          <p class="text-muted" style="font-size:13px;margin:0">None recorded.</p>
+        </sc-if>
+      </div>
+      <div>
+        <h6 style="margin:0 0 var(--space-3)">Unavailable information</h6>
+        <sc-if value="{{ hasUnavailable }}" hint-placeholder-val="{{ true }}">
+          <ul style="margin:0;padding:0;list-style:none;display:grid;gap:var(--space-2)">
+            <sc-for list="{{ unavailableList }}" as="u" hint-placeholder-count="2">
+              <li style="font-size:14px;padding:var(--space-2) var(--space-3);border-left:2px dashed var(--color-neutral-500)">{{ u }}</li>
+            </sc-for>
+          </ul>
+          <p class="text-muted" style="font-size:12px;margin:var(--space-2) 0 0;line-height:1.45">Recorded as absent, never as a negative indicator.</p>
+        </sc-if>
+        <sc-if value="{{ noUnavailable }}" hint-placeholder-val="{{ false }}">
+          <p class="text-muted" style="font-size:13px;margin:0">All sources offered were available.</p>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top:var(--space-8);padding-top:var(--space-4);border-top:1px solid var(--color-divider);display:flex;gap:var(--space-3);flex-wrap:wrap">
+    <button class="btn btn-primary blueprint" onClick="{{ onRequestReview }}" style="padding:var(--space-3) var(--space-6)"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>Request human review</button>
+    <button class="btn btn-secondary" onClick="{{ onEditInputs }}" style="padding:var(--space-3) var(--space-6)">Adjust loan</button>
+    <button class="btn btn-secondary" onClick="{{ onRestart }}" style="padding:var(--space-3) var(--space-6)">Start again</button>
+  </section>
+  <sc-if value="{{ humanReviewRequested }}" hint-placeholder-val="{{ false }}">
+    <div role="status" class="card blueprint" style="margin-top:var(--space-4);max-width:58em">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <div class="card-title">Human review requested — reference {{ reviewRef }}</div>
+      <p class="card-body" style="margin:0">Confirmed locally only. No institution has been contacted and no data has left this browser session.</p>
+    </div>
+  </sc-if>
+
+  <section style="margin-top:var(--space-8);padding-top:var(--space-4);border-top:1px solid var(--color-divider)">
+    <button class="btn btn-ghost" onClick="{{ onToggleTrace }}" style="font-size:14px;padding-left:0">{{ traceToggleLabel }}</button>
+    <sc-if value="{{ showTrace }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:var(--space-3);border:1px solid var(--color-divider);border-radius:var(--radius-md)">
+        <sc-for list="{{ trace }}" as="t" hint-placeholder-count="5">
+          <div style="{{ t.style }}">
+            <div style="font-family:var(--font-heading);font-size:13px;min-width:32px">{{ t.id }}</div>
+            <div>
+              <div style="font-size:13px;line-height:1.45">{{ t.text }}</div>
+              <div class="text-muted" style="font-size:12px;margin-top:2px">{{ t.detail }}</div>
+            </div>
+            <div style="font-size:11px;letter-spacing:.05em;text-transform:uppercase;opacity:.6;text-align:right;min-width:76px">{{ t.firedLabel }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <table class="table" style="margin-top:var(--space-6)">
+        <thead><tr><th style="width:44%">Source</th><th style="width:24%">Declared</th><th>Treatment</th></tr></thead>
+        <tbody>
+          <sc-for list="{{ sourceRows }}" as="s" hint-placeholder-count="4">
+            <tr><td>{{ s.label }}</td><td>{{ s.answer }}</td><td class="text-muted">{{ s.treatment }}</td></tr>
+          </sc-for>
+        </tbody>
+      </table>
+    </sc-if>
+  </section>
+
+  <p class="text-muted" style="font-size:12px;margin:var(--space-8) 0 0;max-width:58em;line-height:1.55">An illustrative assessment result produced by stated rules — not a credit approval, not a credit refusal, and not a regulated affordability assessment.</p>
+</main>
+</sc-if>
+
+<sc-if value="{{ isProduct }}" hint-placeholder-val="{{ false }}">
+<main style="max-width:900px;margin:0 auto;padding:var(--space-8) var(--space-6)">
+  <button class="btn btn-ghost" onClick="{{ goHome }}" style="padding-left:0;font-size:13px;margin-bottom:var(--space-4)">← All products</button>
+  <h6 style="margin:0 0 var(--space-2);color:var(--color-accent-700)">{{ productKicker }}</h6>
+  <h1 style="margin:0 0 var(--space-4);font-size:clamp(34px,5vw,50px);max-width:14em">{{ productName }}</h1>
+  <sc-if value="{{ productHasSummary }}" hint-placeholder-val="{{ true }}">
+    <p style="font-size:17px;line-height:1.5;max-width:40em;margin:calc(-1 * var(--space-2)) 0 var(--space-6)">{{ productSummary }}</p>
+  </sc-if>
+
+  <div style="max-width:420px;margin:0 0 var(--space-8)">
+    <div class="field">
+      <label for="product-country">Select a country to view local figures</label>
+      <select class="input" id="product-country" value="{{ infoCountry }}" onChange="{{ onInfoCountry }}">
+        <option value="">Select a country</option>
+        <sc-for list="{{ infoCountryOptions }}" as="c" hint-placeholder-count="6"><option value="{{ c }}">{{ c }}</option></sc-for>
+      </select>
+      <p class="text-muted" style="font-size:11px;margin:var(--space-1) 0 0;line-height:1.45">{{ infoCurrencyNote }}</p>
+    </div>
+  </div>
+
+  <dl style="margin:0 0 var(--space-8);display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-6) var(--space-4);padding-top:var(--space-4);border-top:1px solid var(--color-divider)">
+    <sc-for list="{{ productSpecs }}" as="sp" hint-placeholder-count="4">
+      <div>
+        <dt class="card-kicker" style="margin:0 0 2px">{{ sp.label }}</dt>
+        <dd style="margin:0;font-size:15px;line-height:1.4">{{ sp.value }}</dd>
+      </div>
+    </sc-for>
+  </dl>
+
+  <h3 style="margin:0 0 var(--space-3)">About this product</h3>
+  <ul style="margin:0 0 var(--space-8);padding-left:var(--space-4);display:grid;gap:var(--space-3);font-size:15px;line-height:1.55;max-width:46em">
+    <sc-for list="{{ productPoints }}" as="pt" hint-placeholder-count="5">
+      <li><strong>{{ pt.term }}</strong> — {{ pt.text }}</li>
+    </sc-for>
+  </ul>
+
+  <div data-col2="" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-6) var(--space-8)">
+    <div style="padding-top:var(--space-4);border-top:1px solid var(--color-divider)">
+      <h4 style="margin:0 0 var(--space-2);font-size:18px">Who can apply</h4>
+      <ul style="margin:0;padding-left:var(--space-4);display:grid;gap:var(--space-1);font-size:14px;line-height:1.5">
+        <sc-for list="{{ productEligibility }}" as="i" hint-placeholder-count="4"><li>{{ i }}</li></sc-for>
+      </ul>
+    </div>
+    <div style="padding-top:var(--space-4);border-top:1px solid var(--color-divider)">
+      <h4 style="margin:0 0 var(--space-2);font-size:18px">What may be required</h4>
+      <ul style="margin:0;padding-left:var(--space-4);display:grid;gap:var(--space-1);font-size:14px;line-height:1.5">
+        <sc-for list="{{ productRequired }}" as="i" hint-placeholder-count="5"><li>{{ i }}</li></sc-for>
+      </ul>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-8)">
+    <button class="btn btn-primary blueprint" onClick="{{ productStart }}" style="padding:var(--space-3) var(--space-6);font-size:16px"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>{{ productStartLabel }}</button>
+    <button class="btn btn-ghost" onClick="{{ goHome }}" style="padding:var(--space-3) var(--space-4)">Back to home</button>
+  </div>
+</main>
+</sc-if>
+
+<sc-if value="{{ isPersonalInfo }}" hint-placeholder-val="{{ false }}">
+<main style="max-width:1000px;margin:0 auto;padding:var(--space-8) var(--space-6)">
+  <h6 style="margin:0 0 var(--space-2);color:var(--color-accent-700)">Personal lending information</h6>
+  <h1 style="margin:0 0 var(--space-4);font-size:clamp(34px,5vw,50px);max-width:16em">What you can borrow, and how it is assessed</h1>
+  <p style="font-size:17px;line-height:1.5;max-width:40em;margin:0 0 var(--space-6)">Three personal lending products. Amounts, rates and terms follow the country you select.</p>
+
+  <div style="max-width:420px;margin:0 0 var(--space-8)">
+    <div class="field">
+      <label for="info-country">Select your country to view local loan information</label>
+      <select class="input" id="info-country" value="{{ infoCountry }}" onChange="{{ onInfoCountry }}">
+        <option value="">Select a country</option>
+        <sc-for list="{{ infoCountryOptions }}" as="c" hint-placeholder-count="6"><option value="{{ c }}">{{ c }}</option></sc-for>
+      </select>
+      <p class="text-muted" style="font-size:11px;margin:var(--space-1) 0 0;line-height:1.45">{{ infoCurrencyNote }}</p>
+    </div>
+  </div>
+
+  <sc-if value="{{ infoHasCountry }}" hint-placeholder-val="{{ false }}">
+  <h3 style="margin:0 0 var(--space-4)">Personal loan options</h3>
+  <div style="display:grid;gap:var(--space-6)">
+    <sc-for list="{{ personalProducts }}" as="p" hint-placeholder-count="3">
+      <article style="padding-top:var(--space-4);border-top:1px solid var(--color-divider)">
+        <h4 style="margin:0 0 var(--space-2);font-size:22px">{{ p.name }}</h4>
+        <p style="margin:0 0 var(--space-3);font-size:15px;line-height:1.55;max-width:40em">{{ p.summary }}</p>
+        <dl style="margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-3)">
+          <sc-for list="{{ p.specs }}" as="sp" hint-placeholder-count="3">
+            <div>
+              <dt class="card-kicker" style="margin:0 0 2px">{{ sp.label }}</dt>
+              <dd style="margin:0;font-size:14px">{{ sp.value }}</dd>
+            </div>
+          </sc-for>
+        </dl>
+        <button class="btn btn-ghost" onClick="{{ p.onToggle }}" style="padding-left:0;font-size:13px;margin-top:var(--space-2)">{{ p.toggleLabel }}</button>
+        <sc-if value="{{ p.open }}" hint-placeholder-val="{{ false }}">
+          <ul style="margin:var(--space-2) 0 0;padding-left:var(--space-4);display:grid;gap:var(--space-2);font-size:14px;line-height:1.55;max-width:44em">
+            <sc-for list="{{ p.points }}" as="pt" hint-placeholder-count="5">
+              <li><strong>{{ pt.term }}</strong> — {{ pt.text }}</li>
+            </sc-for>
+          </ul>
+        </sc-if>
+      </article>
+    </sc-for>
+  </div>
+
+  </sc-if>
+
+  <h3 style="margin:var(--space-8) 0 var(--space-4)">Important information</h3>
+  <div data-col2="" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-6) var(--space-8)">
+    <div style="padding-top:var(--space-4);border-top:1px solid var(--color-divider)">
+      <h4 style="margin:0 0 var(--space-2);font-size:18px">How personal assessments work</h4>
+      <ul style="margin:0;padding-left:var(--space-4);display:grid;gap:var(--space-1);font-size:14px;line-height:1.5">
+        <li>Income, expenses and existing debt you enter</li>
+        <li>The amount requested, its interest and its term</li>
+        <li>Whether the resulting monthly repayment is affordable</li>
+        <li>Conventional and alternative financial information where available</li>
+      </ul>
+    </div>
+    <div style="padding-top:var(--space-4);border-top:1px solid var(--color-divider)">
+      <h4 style="margin:0 0 var(--space-2);font-size:18px">Identity verification</h4>
+      <p style="margin:0;font-size:14px;line-height:1.55">Verification is simulated. No real ID documents are uploaded, checked or stored.</p>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-8)">
+    <button class="btn btn-secondary" onClick="{{ goPersonal }}" style="padding:var(--space-2) var(--space-6)">Personal lending</button>
+    <button class="btn btn-ghost" onClick="{{ goHome }}" style="padding:var(--space-2) var(--space-4)">Back to home</button>
+  </div>
+</main>
+</sc-if>
+
+<sc-if value="{{ isBusinessInfo }}" hint-placeholder-val="{{ false }}">
+<main style="max-width:1000px;margin:0 auto;padding:var(--space-8) var(--space-6)">
+  <h6 style="margin:0 0 var(--space-2);color:var(--color-accent-700)">Business finance information</h6>
+  <h1 style="margin:0 0 var(--space-4);font-size:clamp(34px,5vw,50px);max-width:16em">What your business can apply for, and how it is assessed</h1>
+  <p style="font-size:17px;line-height:1.5;max-width:40em;margin:0 0 var(--space-6)">The three funding products available. Funding ranges, rates and terms follow the country you select and are illustrative lending information, not a finance offer.</p>
+
+  <div style="max-width:420px;margin:0 0 var(--space-8)">
+    <div class="field">
+      <label for="info-country">Select your country to view local loan information</label>
+      <select class="input" id="info-country" value="{{ infoCountry }}" onChange="{{ onInfoCountry }}">
+        <option value="">Select a country</option>
+        <sc-for list="{{ infoCountryOptions }}" as="c" hint-placeholder-count="6"><option value="{{ c }}">{{ c }}</option></sc-for>
+      </select>
+      <p class="text-muted" style="font-size:11px;margin:var(--space-1) 0 0;line-height:1.45">{{ infoCurrencyNote }}</p>
+    </div>
+  </div>
+
+  <sc-if value="{{ infoHasCountry }}" hint-placeholder-val="{{ false }}">
+  <h3 style="margin:0 0 var(--space-4)">Business funding options</h3>
+  <div style="display:grid;gap:var(--space-6)">
+    <sc-for list="{{ businessInfoProducts }}" as="p" hint-placeholder-count="3">
+      <article style="padding-top:var(--space-4);border-top:1px solid var(--color-divider)">
+        <h4 style="margin:0 0 var(--space-2);font-size:22px">{{ p.name }}</h4>
+        <p style="margin:0 0 var(--space-3);font-size:15px;line-height:1.55;max-width:40em">{{ p.summary }}</p>
+        <ul style="margin:0 0 var(--space-3);padding-left:var(--space-4);display:grid;gap:2px;font-size:14px">
+          <sc-for list="{{ p.uses }}" as="u" hint-placeholder-count="4"><li>{{ u }}</li></sc-for>
+        </ul>
+        <dl style="margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:var(--space-3)">
+          <sc-for list="{{ p.specs }}" as="sp" hint-placeholder-count="4">
+            <div>
+              <dt class="card-kicker" style="margin:0 0 2px">{{ sp.label }}</dt>
+              <dd style="margin:0;font-size:14px">{{ sp.value }}</dd>
+            </div>
+          </sc-for>
+        </dl>
+        <button class="btn btn-ghost" onClick="{{ p.onToggle }}" style="padding-left:0;font-size:13px;margin-top:var(--space-2)">{{ p.toggleLabel }}</button>
+        <sc-if value="{{ p.open }}" hint-placeholder-val="{{ false }}">
+          <ul style="margin:var(--space-2) 0 0;padding-left:var(--space-4);display:grid;gap:var(--space-2);font-size:14px;line-height:1.55;max-width:44em">
+            <sc-for list="{{ p.points }}" as="pt" hint-placeholder-count="5">
+              <li><strong>{{ pt.term }}</strong> — {{ pt.text }}</li>
+            </sc-for>
+          </ul>
+        </sc-if>
+      </article>
+    </sc-for>
+  </div>
+
+  </sc-if>
+
+  <h3 style="margin:var(--space-8) 0 var(--space-4)">Eligibility and information</h3>
+  <div data-col2="" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-6) var(--space-8)">
+    <div style="padding-top:var(--space-4);border-top:1px solid var(--color-divider)">
+      <h4 style="margin:0 0 var(--space-2);font-size:18px">Who can apply</h4>
+      <ul style="margin:0;padding-left:var(--space-4);display:grid;gap:var(--space-1);font-size:14px;line-height:1.5">
+        <li>Registered businesses</li>
+        <li>Sole traders</li>
+        <li>Informal micro and small businesses</li>
+        <li>Self-employed business operators</li>
+      </ul>
+    </div>
+    <div style="padding-top:var(--space-4);border-top:1px solid var(--color-divider)">
+      <h4 style="margin:0 0 var(--space-2);font-size:18px">What may be required</h4>
+      <ul style="margin:0;padding-left:var(--space-4);display:grid;gap:var(--space-1);font-size:14px;line-height:1.5">
+        <li>Business or owner identity verification</li>
+        <li>Evidence of business activity</li>
+        <li>Revenue and cash-flow information</li>
+        <li>Bank or mobile-money transaction history where available</li>
+        <li>Invoices where relevant</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-8)">
+    <button class="btn btn-secondary" onClick="{{ goBusiness }}" style="padding:var(--space-2) var(--space-6)">Business finance</button>
+    <button class="btn btn-ghost" onClick="{{ goHome }}" style="padding:var(--space-2) var(--space-4)">Back to home</button>
+  </div>
+</main>
+</sc-if>
+
+<sc-if value="{{ resModalOpen }}" hint-placeholder-val="{{ false }}">
+  <div class="dialog-backdrop" onClick="{{ closeRes }}" style="position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:var(--space-6);background:rgba(32,36,38,.42)">
+    <div class="dialog blueprint" role="dialog" aria-modal="true" onClick="{{ stopClick }}" style="background:var(--color-bg);max-width:640px;width:100%;max-height:82vh;overflow:auto;padding:var(--space-6)">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-4)">
+        <div>
+          <div class="card-kicker">{{ resKicker }}</div>
+          <h3 class="dialog-title" style="margin:var(--space-1) 0 0">{{ resTitle }}</h3>
+        </div>
+        <button class="btn btn-ghost" onClick="{{ closeRes }}" aria-label="Close" style="font-size:20px;line-height:1;padding:2px 8px">×</button>
+      </div>
+      <p style="font-size:15px;line-height:1.55;margin:var(--space-3) 0 0">{{ resIntro }}</p>
+      <ul style="margin:var(--space-4) 0 0;padding-left:var(--space-4);display:grid;gap:var(--space-3);font-size:15px;line-height:1.5">
+        <sc-for list="{{ resPoints }}" as="p" hint-placeholder-count="5">
+          <li><strong>{{ p.term }}</strong> — {{ p.text }}</li>
+        </sc-for>
+      </ul>
+      <p class="text-muted" style="font-size:12px;line-height:1.5;margin:var(--space-4) 0 0">Educational content. Not financial advice.</p>
+      <div style="display:flex;justify-content:flex-end;margin-top:var(--space-6)">
+        <button class="btn btn-secondary" onClick="{{ closeRes }}">Close</button>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<footer style="border-top:1px solid var(--color-divider);padding:var(--space-6);display:flex;gap:var(--space-4);flex-wrap:wrap;justify-content:space-between;align-items:baseline">
+  <span style="font-family:var(--font-heading);font-size:14px">Ethical Digital Lending</span>
+  <span class="text-muted" style="font-size:12px">MSc FinTech academic prototype · Synthetic data only</span>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+/**
+ * Prototype interface logic.
+ *
+ * Routing, the borrower form and the multi-step journey live here. All
+ * arithmetic and decision-making is delegated to the separated modules:
+ *   window.EDL.data     — country/market reference lists   (app/countries.js)
+ *   window.EDL.afford   — affordability arithmetic         (app/affordability.js)
+ *   window.EDL.pricing  — amortising repayment and totals  (app/pricing.js)
+ *   window.EDL.assess   — rule-based ethical assessment    (app/assessment.js)
+ *   window.EDL.demos    — synthetic demonstration profiles (app/demo-applicants.js)
+ * Unit tests for those modules live in app/tests.js and are deliberately not
+ * loaded by the borrower-facing interface.
+ */
+class Component extends DCLogic {
+  state = {
+    page: 'home',
+    // Which product's information page is open (routing only).
+    productKind: '',
+    productId: '',
+    // Demonstration mode. Off for a normal application: the applicant sees
+    // only the standard fields. Turned on by the Try demo entry points, which
+    // is the only route that reveals the profile chips and the simulate-all
+    // control. It never changes a calculation, a rule or an outcome.
+    demoMode: false,
+    bizDemoMode: false,
+    step: 1,
+    submitted: false,
+    errors: [],
+    result: null,
+    showTrace: false,
+    humanReviewRequested: false,
+    reviewRef: '',
+    demoLoadedName: '',
+    demoId: '',
+    thresholds: { affordableMax: 35, concernMax: 50 },
+    form: {
+      // African markets only.
+      region: 'Africa', country: '', currency: '', is18: false,
+      employmentType: '', monthlyIncome: '', incomeRegularity: '',
+      loanProduct: '', rateBasis: 'annual',
+      loanAmount: '', loanTermMonths: '', interestRate: '', existingDebt: '',
+      essentialExpenses: '',
+      creditHistory: 'Unavailable', bankConsistency: 'Unavailable',
+      utilityPayments: 'Unavailable', mobileMoney: 'Unavailable',
+      kyc: {}
+    },
+
+    // --- business journey, kept in its own slice so the two never collide ---
+    bizStep: 1,
+    bizSubmitted: false,
+    bizErrors: [],
+    bizResult: null,
+    showBizTrace: false,
+    bizReviewRequested: false,
+    bizReviewRef: '',
+    bizForm: {
+      region: 'Africa', country: '', currency: '',
+      businessType: '', sector: '', tradingHistory: '', applicantIsOwner: false,
+      monthlyRevenue: '', operatingExpenses: '', existingBusinessDebt: '',
+      cashFlowConsistency: '',
+      product: '', fundingAmount: '', termMonths: '', interestRate: '',
+      wcPurpose: '', wcCommitments: '',
+      afAssetValue: '', afFinanced: '', afSecurity: '',
+      ifInvoiceValue: '', ifPaymentPeriod: '', ifCustomerHistory: '',
+      bankConsistency: 'Unavailable', mobileMoney: 'Unavailable',
+      merchantHistory: 'Unavailable', utilityPayments: 'Unavailable',
+      invoicePayments: 'Unavailable',
+      kyc: {}
+    }
+  };
+
+  componentDidMount() {
+    this._polls = 0; this.waitForModules();
+    this._onDocDown = (e) => {
+      if (!this.state.openMenu) return;
+      var el = e.target;
+      while (el) { if (el.getAttribute && el.getAttribute('data-navmenu') !== null) return; el = el.parentNode; }
+      this.closeMenu();
+    };
+    this._onKey = (e) => { if (e.key === 'Escape' && this.state.openMenu) this.closeMenu(); };
+    document.addEventListener('pointerdown', this._onDocDown);
+    document.addEventListener('keydown', this._onKey);
+  }
+  componentWillUnmount() {
+    clearTimeout(this._pollTimer); clearTimeout(this._menuT); this._polls = 999;
+    document.removeEventListener('pointerdown', this._onDocDown);
+    document.removeEventListener('keydown', this._onKey);
+  }
+
+  /** Modules load as external scripts; re-render once they are all present. */
+  waitForModules() {
+    if (this.ready()) { this.forceUpdate(); return; }
+    if (this._polls > 120) return;
+    this._polls = (this._polls || 0) + 1;
+    clearTimeout(this._pollTimer);
+    this._pollTimer = setTimeout(() => this.waitForModules(), 80);
+  }
+
+  ready() {
+    var E = window.EDL;
+    return !!(E && E.data && E.markets && E.afford && E.pricing && E.kyc && E.assess && E.business && E.demos);
+  }
+
+  /** Pushes the documented thresholds into the affordability module. */
+  applyThresholds() {
+    if (!this.ready()) return;
+    var t = this.state.thresholds;
+    window.EDL.afford.setThresholds(t.affordableMax, t.concernMax);
+  }
+
+  /**
+   * pricedForm — the form with proposedRepayment derived from amount, rate and
+   * term. Everything downstream (affordability, assessment) reads this, so the
+   * applicant never types a repayment figure.
+   */
+  pricedForm() {
+    return window.EDL.pricing.withPricing(this.state.form);
+  }
+
+  /**
+   * selectLoanProduct — switching product moves the term, rate and rate basis
+   * to the selected country's configuration for that product, so the request
+   * can never carry a rate quoted on the wrong clock.
+   */
+  selectLoanProduct(id) {
+    var f = this.state.form;
+    var m = window.EDL.markets.product('personal', id, f.country, f.currency);
+    this.setState(st => ({
+      form: Object.assign({}, st.form, {
+        loanProduct: id,
+        rateBasis: m ? m.rateBasis : 'annual',
+        interestRate: m ? String(m.defaultRate) : st.form.interestRate,
+        loanTermMonths: m ? String(m.defaultTerm) : st.form.loanTermMonths
+      }),
+      errors: []
+    }));
+  }
+
+  set(key, value) {
+    this.setState(s => ({ form: Object.assign({}, s.form, { [key]: value }), errors: [] }));
+  }
+
+  // ----------------------------------------------------------- business ---
+
+  /** setBiz — immutable single-field update on the business form. */
+  setBiz(key, value) {
+    this.setState(st => ({
+      bizForm: Object.assign({}, st.bizForm, { [key]: value }), bizErrors: []
+    }));
+  }
+
+  /** Business context for the shared verification module. */
+  bizKycContext() {
+    var b = this.state.bizForm;
+    return { businessType: b.businessType, applicantIsOwner: b.applicantIsOwner, kyc: b.kyc };
+  }
+
+  /** Resolved business verification checks for the current type and country. */
+  businessKycChecks() {
+    var b = this.state.bizForm;
+    var profile = window.EDL.data.countryProfile(b.region, b.country);
+    return window.EDL.kyc.businessChecks(this.bizKycContext(), profile);
+  }
+
+  /** The business form with its repayment derived from the pricing engine. */
+  pricedBizForm() { return window.EDL.business.withPricing(this.state.bizForm); }
+
+  validateBiz(step) {
+    var b = this.state.bizForm, e = [], n = this.num;
+    if (step === 1) {
+      if (!b.country) e.push('Select a country.');
+      if (!b.businessType) e.push('Select a business type.');
+      if (!b.sector) e.push('Select a business sector.');
+      if (!b.tradingHistory) e.push('Select how long the business has been operating.');
+      // Same gateway rule as the personal journey: verification must be
+      // complete to proceed, and never counts as a business concern.
+      var outstanding = window.EDL.kyc.kycStatus(this.businessKycChecks()).outstanding;
+      if (outstanding.length) {
+        e.push('Verification required before assessment can continue: ' + outstanding.join(', ') + '.');
+      }
+    }
+    if (step === 2) {
+      if (!(n(b.monthlyRevenue) > 0)) e.push('Enter average monthly revenue greater than zero.');
+      if (isNaN(n(b.operatingExpenses)) || n(b.operatingExpenses) < 0) e.push('Enter monthly operating expenses (enter 0 if none).');
+      if (isNaN(n(b.existingBusinessDebt)) || n(b.existingBusinessDebt) < 0) e.push('Enter existing monthly business repayments (enter 0 if none).');
+      if (!b.cashFlowConsistency) e.push('Select how consistent your cash flow is.');
+    }
+    // The funding request is checked against the selected product's
+    // illustrative range on step 3 and again at submission, so an out-of-range
+    // request is never priced or assessed.
+    if (step === 3 || step === 4) {
+      window.EDL.business.validateFundingRequest(b).forEach(function (msg) { e.push(msg); });
+    }
+    if (step === 3) {
+      window.EDL.business.productFields(b.product).forEach(function (fd) {
+        var v = b[fd.key];
+        if (fd.type === 'select' && !v) e.push('Select ' + fd.label.toLowerCase() + '.');
+        if (fd.type === 'money' && (v === '' || isNaN(parseFloat(v)))) e.push('Enter ' + fd.label.toLowerCase() + '.');
+      });
+    }
+    return e;
+  }
+
+  bizNext() {
+    var step = this.state.bizStep;
+    var errs = this.validateBiz(step);
+    if (errs.length) { this.setState({ bizErrors: errs }); return; }
+    if (step < 3) { this.setState({ bizStep: step + 1, bizErrors: [] }); window.scrollTo(0, 0); return; }
+    this.submitBusiness();
+  }
+
+  bizBack() {
+    if (this.state.bizStep > 1) { this.setState({ bizStep: this.state.bizStep - 1, bizErrors: [] }); window.scrollTo(0, 0); }
+    else this.go('business');
+  }
+
+  runBusinessAssessment() {
+    var B = window.EDL.business;
+    var form = this.pricedBizForm();
+    var cash = B.calculateCashFlow(form);
+    var result = B.assessBusiness(form, cash);
+    result.pricing = form.pricing;
+    // Verification is attached after the decision, for display only.
+    result.kycChecks = this.businessKycChecks();
+    result.kycStatus = window.EDL.kyc.kycStatus(result.kycChecks);
+    this.setState({
+      bizResult: result, page: 'bizResults',
+      bizReviewRequested: false, showBizTrace: false
+    });
+    window.scrollTo(0, 0);
+  }
+
+  loadBusinessDemo() {
+    var B = window.EDL.business, K = window.EDL.kyc;
+    var form = Object.assign({}, B.DEMO.form);
+    var profile = window.EDL.data.countryProfile(form.region, form.country);
+    form.kyc = K.markAll(
+      K.businessChecks({ businessType: form.businessType, applicantIsOwner: form.applicantIsOwner, kyc: {} }, profile),
+      K.VERIFIED);
+    this.setState({ bizForm: form, bizErrors: [], bizResult: null, bizSubmitted: false });
+  }
+
+  restartBusiness() {
+    this.setState({
+      page: 'bizAssess', bizStep: 1, bizSubmitted: false, bizErrors: [], bizResult: null,
+      bizReviewRequested: false,
+      bizForm: {
+        region: 'Africa', country: '', currency: '',
+        businessType: '', sector: '', tradingHistory: '', applicantIsOwner: false,
+        monthlyRevenue: '', operatingExpenses: '', existingBusinessDebt: '',
+        cashFlowConsistency: '',
+        product: '', fundingAmount: '', termMonths: '', interestRate: '',
+        wcPurpose: '', wcCommitments: '',
+        afAssetValue: '', afFinanced: '', afSecurity: '',
+        ifInvoiceValue: '', ifPaymentPeriod: '', ifCustomerHistory: '',
+        bankConsistency: 'Unavailable', mobileMoney: 'Unavailable',
+        merchantHistory: 'Unavailable', utilityPayments: 'Unavailable',
+        invoicePayments: 'Unavailable',
+        kyc: {}
+      }
+    });
+    window.scrollTo(0, 0);
+  }
+
+  go(page, step) {
+    this.setState({ page: page, step: step || this.state.step, errors: [] });
+    if (typeof window !== 'undefined') window.scrollTo(0, 0);
+  }
+
+  num(v) { var n = parseFloat(v); return isFinite(n) ? n : NaN; }
+
+  /** Validation for the current step. OUTPUT: array of messages (empty = valid). */
+  validate(step) {
+    var f = this.state.form, e = [];
+    if (step === 1) {
+      if (!f.country) e.push('Select a country.');
+      if (!f.is18) e.push('Confirm you are 18 or older.');
+      if (!f.employmentType) e.push('Select an employment type.');
+      // Verification is an onboarding gateway, not a credit factor: an
+      // incomplete check stops the application from proceeding to an
+      // assessment, and is never recorded as a risk or affordability concern.
+      // Auto-derived checks (country, age) are covered by the errors above.
+      var K = window.EDL.kyc;
+      var outstanding = K.kycStatus(this.personalKycChecks().filter(function (c) { return !c.auto; })).outstanding;
+      if (outstanding.length) {
+        e.push('Verification required before assessment can continue: ' + outstanding.join(', ') + '.');
+      }
+    }
+    if (step === 2) {
+      if (!(this.num(f.monthlyIncome) > 0)) e.push('Enter a monthly income greater than zero.');
+      if (!f.incomeRegularity) e.push('Select how regular your income is.');
+      if (isNaN(this.num(f.essentialExpenses)) || this.num(f.essentialExpenses) < 0) e.push('Enter essential monthly expenses (enter 0 if none).');
+      if (isNaN(this.num(f.existingDebt)) || this.num(f.existingDebt) < 0) e.push('Enter existing monthly repayments (enter 0 if none).');
+    }
+    // The request is checked against the selected country's configuration for
+    // the chosen product, so an out-of-range request is never priced or
+    // assessed. Ranges are illustrative prototype configuration.
+    if (step === 3) {
+      if (!f.loanProduct) {
+        e.push('Choose a loan product.');
+      } else {
+        window.EDL.markets.validateRequest('personal', f.loanProduct, f.country, f.currency, {
+          amount: f.loanAmount, term: f.loanTermMonths, rate: f.interestRate
+        }).forEach(function (msg) { e.push(msg); });
+      }
+    }
+    return e;
+  }
+
+  /** Resolved personal verification checks for the current form and country. */
+  personalKycChecks() {
+    var f = this.state.form;
+    var profile = window.EDL.data.countryProfile(f.region, f.country);
+    return window.EDL.kyc.personalChecks(f, profile);
+  }
+
+  next() {
+    var step = this.state.step;
+    var errs = this.validate(step);
+    if (errs.length) { this.setState({ errors: errs }); return; }
+    if (step < 3) { this.setState({ step: step + 1, errors: [] }); window.scrollTo(0, 0); return; }
+    this.submitPersonal();
+  }
+
+  back() {
+    if (this.state.step > 1) { this.setState({ step: this.state.step - 1, errors: [] }); window.scrollTo(0, 0); }
+    else this.go('personal');
+  }
+
+  /**
+   * Records the application as submitted on step 3. The assessment still runs
+   * behind it so the stored result stays available internally; the applicant
+   * sees only the submitted status and the expected approval time.
+   */
+  submitPersonal() {
+    this.applyThresholds();
+    var f = this.pricedForm();
+    var a = window.EDL.afford.calculateAffordability(f);
+    var result = window.EDL.assess.assessApplicant(f, a);
+    result.pricing = f.pricing;
+    result.kycChecks = this.personalKycChecks();
+    result.kycStatus = window.EDL.kyc.kycStatus(result.kycChecks);
+    this.setState({ result: result, submitted: true, errors: [] });
+  }
+
+  submitBusiness() {
+    var B = window.EDL.business;
+    var form = this.pricedBizForm();
+    var cash = B.calculateCashFlow(form);
+    var result = B.assessBusiness(form, cash);
+    result.pricing = form.pricing;
+    result.kycChecks = this.businessKycChecks();
+    result.kycStatus = window.EDL.kyc.kycStatus(result.kycChecks);
+    this.setState({ bizResult: result, bizSubmitted: true, bizErrors: [] });
+  }
+
+  /** Runs pricing, then affordability, then the rule-based assessment. */
+  runAssessment() {
+    this.applyThresholds();
+    var f = this.pricedForm();
+    var a = window.EDL.afford.calculateAffordability(f);
+    var result = window.EDL.assess.assessApplicant(f, a);
+    result.pricing = f.pricing;
+    // Verification is attached for display only: it is recorded after the
+    // decision and is never passed to the assessment rules.
+    result.kycChecks = this.personalKycChecks();
+    result.kycStatus = window.EDL.kyc.kycStatus(result.kycChecks);
+    this.setState({ result: result, page: 'results', humanReviewRequested: false, showTrace: false });
+    window.scrollTo(0, 0);
+  }
+
+  loadDemo(demo) {
+    // Demonstration profiles arrive with their simulated checks already
+    // verified, so the journey can be walked without re-entering them.
+    var K = window.EDL.kyc;
+    var profile = window.EDL.data.countryProfile(demo.form.region, demo.form.country);
+    var form = Object.assign({}, demo.form);
+    form.kyc = K.markAll(K.personalChecks(form, profile), K.VERIFIED);
+    this.setState({
+      form: form,
+      demoLoadedName: demo.name.split(' ').slice(0, 2).join(' '), demoId: demo.id, errors: [], result: null
+    });
+  }
+
+  clampAmount(v, min, max) {
+    var n = parseFloat(v);
+    if (!isFinite(n)) n = Math.round((min + max) / 2);
+    return String(Math.round(Math.min(Math.max(n, min), max)));
+  }
+
+  // Fits a demonstration request to one product's configuration for the
+  // country already on the form. Reads the ranges from markets.js — no rate,
+  // band or rule is defined here.
+  fitPersonalProduct(form, pid) {
+    var conf = window.EDL.markets.personalProducts(form.country, form.currency)
+      .filter(p => p.id === pid)[0];
+    if (!conf) return form;
+    form.loanProduct = conf.id;
+    form.rateBasis = conf.rateBasis;
+    form.interestRate = String(conf.defaultRate);
+    form.loanTermMonths = String(conf.defaultTerm);
+    form.loanAmount = this.clampAmount(form.loanAmount, conf.amountMin, conf.amountMax);
+    return form;
+  }
+
+  fitBusinessProduct(form, pid) {
+    var B = window.EDL.business;
+    var conf = window.EDL.markets.businessProducts(form.country, form.currency)
+      .filter(p => p.id === pid)[0];
+    if (!conf) return form;
+    form = B.selectProduct(form, pid);
+    form.interestRate = String(conf.defaultRate);
+    form.termMonths = String(conf.defaultTerm);
+    form.fundingAmount = this.clampAmount(form.fundingAmount, conf.amountMin, conf.amountMax);
+    var amt = parseFloat(form.fundingAmount);
+    if (pid === 'working-capital') {
+      form.wcPurpose = 'Stock and inventory';
+      form.wcCommitments = String(Math.round(amt * 0.2));
+    } else if (pid === 'asset-finance') {
+      form.afAssetValue = String(Math.round(amt * 1.25));
+      form.afFinanced = String(Math.round(amt));
+      form.afSecurity = 'Asset offered as security';
+    } else if (pid === 'invoice-finance') {
+      form.ifInvoiceValue = String(Math.round(amt * 1.3));
+      form.ifPaymentPeriod = '45';
+      form.ifCustomerHistory = 'Pays on time';
+    }
+    return form;
+  }
+
+  // The single application path. The demonstration profile and its simulated
+  // verification are loaded automatically, fitted to the product the applicant
+  // arrived from, and the assessment then runs step by step as normal.
+  applyPersonal(pid) {
+    var K = window.EDL.kyc, demo = window.EDL.demos[0];
+    var form = Object.assign({}, demo.form);
+    if (pid) form = this.fitPersonalProduct(form, pid);
+    var profile = window.EDL.data.countryProfile(form.region, form.country);
+    form.kyc = K.markAll(K.personalChecks(form, profile), K.VERIFIED);
+    this.setState({
+      form: form, errors: [], result: null, submitted: false, humanReviewRequested: false,
+      demoLoadedName: '', demoId: demo.id, demoMode: false
+    });
+    this.go('assess', 1);
+  }
+
+  applyBusiness(pid) {
+    var B = window.EDL.business, K = window.EDL.kyc;
+    var form = Object.assign({}, B.DEMO.form);
+    if (pid) form = this.fitBusinessProduct(form, pid);
+    var profile = window.EDL.data.countryProfile(form.region, form.country);
+    form.kyc = K.markAll(
+      K.businessChecks({ businessType: form.businessType, applicantIsOwner: form.applicantIsOwner, kyc: {} }, profile),
+      K.VERIFIED);
+    this.setState({
+      bizForm: form, bizErrors: [], bizResult: null, bizReviewRequested: false,
+      bizStep: 1, bizDemoMode: false
+    });
+    this.go('bizAssess');
+  }
+
+  restart() {
+    this.setState({
+      page: 'assess', step: 1, submitted: false, errors: [], result: null, demoLoadedName: '', demoId: '',
+      humanReviewRequested: false,
+      form: {
+        region: 'Africa', country: '', currency: '', is18: false,
+        employmentType: '', monthlyIncome: '', incomeRegularity: '',
+        loanProduct: '', rateBasis: 'annual',
+        loanAmount: '', loanTermMonths: '', interestRate: '', existingDebt: '',
+        essentialExpenses: '',
+        creditHistory: 'Unavailable', bankConsistency: 'Unavailable',
+        utilityPayments: 'Unavailable', mobileMoney: 'Unavailable', kyc: {}
+      }
+    });
+    window.scrollTo(0, 0);
+  }
+
+  // Opens one product's own information page. Routing only — no pricing,
+  // currency or assessment state is touched.
+  openProduct(kind, id) {
+    this.setState({ productKind: kind, productId: id, infoOpen: null });
+    this.go('product', 1);
+  }
+
+  radioOptions(values, current, key) {
+    return values.map(v => ({
+      value: v, checked: current === v, name: 'edl-' + key,
+      onChange: () => this.set(key, v)
+    }));
+  }
+
+  // Borrower-facing copy for the personal products. The AMOUNTS, RATES and
+  // TERMS are not here: they come from the selected country's configuration in
+  // markets.js, so the information view and the application can never differ.
+  personalProductCopy() {
+    return {
+      'short-term': {
+        summary: 'For planned short-term personal expenses.',
+        points: [
+          { term: 'Intended for', text: 'expenses you can plan for and repay over a defined period.' },
+          { term: 'Repayment', text: 'the same amount each month, covering interest and part of the balance.' },
+          { term: 'Affordability', text: 'the monthly repayment is tested against your income after essential spending and existing commitments.' },
+          { term: 'Eligibility', text: 'applicants aged 18 or over with some evidence of regular income. No real lending offer is made.' }
+        ]
+      },
+      'emergency': {
+        summary: 'For unexpected essential expenses where a smaller amount is needed quickly.',
+        points: [
+          { term: 'Intended for', text: 'unexpected essential costs.' },
+          { term: 'Repayment', text: 'a short run of equal monthly repayments, shown in full before you commit.' },
+          { term: 'Affordability', text: 'a short term means a higher monthly amount, so affordability is checked carefully.' },
+          { term: 'Eligibility', text: 'open to thin-file applicants where alternative financial information is available. No real lending offer is made.' }
+        ]
+      },
+      'salary': {
+        summary: 'For applicants with regular employment income and a longer repayment horizon.',
+        points: [
+          { term: 'Intended for', text: 'larger personal costs repaid gradually from a regular salary.' },
+          { term: 'Repayment', text: 'equal monthly repayments. A longer term lowers the monthly amount but raises the total interest paid.' },
+          { term: 'Affordability', text: 'regular income does not remove the affordability test. It is still assessed before any recommendation.' },
+          { term: 'Eligibility', text: 'applicants in salaried or regular employment. No real lending offer is made.' }
+        ]
+      }
+    };
+  }
+
+  /**
+   * marketProductView — one product's configuration turned into the display
+   * rows both the information view and the application read.
+   * INPUT : market product record, copy record, currency code
+   * OUTPUT: { specs, points } with the figures written in local currency and
+   *         every rate carrying its basis
+   */
+  marketProductView(m, copy) {
+    var specs = [
+      { label: 'Amount', value: m.amountLabel },
+      { label: 'Annual rate', value: m.rateLabel },
+      { label: 'Term', value: m.termLabel }
+    ];
+    var figures = [
+      { term: 'Amount available', text: m.amountLabel + ' in this market.' },
+      { term: 'Interest', text: m.rateLabel + '.' },
+      { term: 'Term', text: m.termLabel + ' of equal monthly repayments.' }
+    ];
+    var points = (copy && copy.points) ? copy.points : [];
+    var out = [points[0]].concat(figures, points.slice(1)).filter(Boolean);
+    if (m.note) out.push({ term: 'Calibration', text: m.note });
+    return { specs: specs, points: out };
+  }
+
+  // Extra explanation layered over the business module's real product records,
+  // so the information view can never quote terms the funding step contradicts.
+  businessProductRequirement(id) {
+    if (/invoice/.test(id)) return ['Copies of the unpaid customer invoices being financed'];
+    if (/asset/.test(id)) return ['Details or a quotation for the asset being financed'];
+    if (/working|capital/.test(id)) return ['Merchant or payment records where available'];
+    return [];
+  }
+
+  businessProductNotes() {
+    return {
+      'working-capital': [
+        { term: 'Designed for', text: 'short-term gaps between paying suppliers and being paid by customers.' },
+        { term: 'Information required', text: 'monthly revenue, operating expenses, trading length and existing repayments.' },
+        { term: 'Repayment structure', text: 'equal monthly repayments of principal and interest.' },
+        { term: 'Cash-flow assessment', text: 'total monthly repayments are measured against your operating cash surplus.' },
+        { term: 'Alternative information', text: 'mobile-money takings and merchant transaction history count where bank records are thin.' }
+      ],
+      'asset-finance': [
+        { term: 'Designed for', text: 'a specific piece of equipment, machinery, vehicle or technology.' },
+        { term: 'Information required', text: 'the asset and its value, alongside your revenue and expenses.' },
+        { term: 'Repayment structure', text: 'equal monthly repayments spread across the asset’s useful life.' },
+        { term: 'Cash-flow assessment', text: 'repayments are tested against the surplus the business generates each month.' },
+        { term: 'Security', text: 'the financed asset itself normally stands as security.' }
+      ],
+      'invoice-finance': [
+        { term: 'Designed for', text: 'businesses waiting on customer invoices that have been issued but not yet paid.' },
+        { term: 'Information required', text: 'invoice value, customer payment terms and your trading records.' },
+        { term: 'Repayment structure', text: 'settled when the customer pays the invoice, rather than over a long schedule.' },
+        { term: 'Cash-flow assessment', text: 'capacity is judged on the surplus available if the invoice is paid late.' },
+        { term: 'Invoice requirements', text: 'invoices must be issued to a business customer and not already financed elsewhere.' }
+      ]
+    };
+  }
+
+  // Borrower-facing guidance shown on the home page and in the resource modal.
+  resourceList() {
+    return [
+      { kicker: 'Borrowing', title: 'Responsible Borrowing',
+        body: 'What a loan really costs once interest and your existing commitments are counted.',
+        intro: 'Before you borrow, four figures tell you almost everything you need to know.',
+        points: [
+          { term: 'Interest rate', text: 'the annual cost of borrowing, charged on what you still owe.' },
+          { term: 'Monthly repayment', text: 'the fixed amount leaving your account every month until the loan ends.' },
+          { term: 'Total repayment', text: 'the amount borrowed plus all the interest, added up over the full term. A longer term lowers the monthly amount but raises this total.' },
+          { term: 'Affordability', text: 'whether that monthly repayment fits comfortably around your income and essential spending.' },
+          { term: 'Existing commitments', text: 'rent, loans and instalments you already pay reduce what is safely left each month, so count them in before you take on more.' }
+        ] },
+      { kicker: 'Inclusion', title: 'Alternative Data & Financial Inclusion',
+        body: 'Evidence of reliability that exists outside a formal credit file.',
+        intro: 'If you have never held a loan or credit card, you can still show that you manage money well.',
+        points: [
+          { term: 'Thin credit files', text: 'little or no borrowing history recorded with a credit bureau. Common, and not a sign of risk.' },
+          { term: 'Bank transaction history', text: 'income arriving and outgoings leaving over time, showing a pattern.' },
+          { term: 'Bill-payment history', text: 'utilities, rent or airtime paid consistently and on time.' },
+          { term: 'Mobile-money activity', text: 'regular sends, receipts and balances held in a wallet.' },
+          { term: 'Why it matters', text: 'a missing credit history is an absence of information, not evidence of risk, and should not automatically shut you out of being assessed.' }
+        ] },
+      { kicker: 'Your decision', title: 'Understanding Your Lending Decision',
+        body: 'Why this assessment gives reasons, and what those reasons do and do not mean.',
+        intro: 'Every recommendation here comes with an explanation you can read and question.',
+        points: [
+          { term: 'Affordability first', text: 'repayment capacity is tested before any positive indicator is counted, and a strong record cannot override an unaffordable repayment.' },
+          { term: 'Reasons are given', text: 'each recommendation states the factors behind it in plain language, so nothing is hidden behind a score.' },
+          { term: 'Human review', text: 'any outcome can be escalated to a person, whatever the rules concluded.' },
+          { term: 'Not an approval or refusal', text: 'this is an assessment result, not a credit decision. A real lender would apply its own checks, policy and regulatory obligations.' }
+        ] },
+      { kicker: 'Business', title: 'Financing Your Business Responsibly',
+        body: 'Matching the funding shape to the need, and testing it against your cash flow.',
+        intro: 'Three common forms of business funding, and the two costs to weigh before taking any of them.',
+        points: [
+          { term: 'Working capital', text: 'short-term funding for stock, wages and day-to-day gaps between paying out and being paid.' },
+          { term: 'Asset finance', text: 'funding a specific machine or vehicle, repaid over the time you use it.' },
+          { term: 'Invoice finance', text: 'releasing cash tied up in invoices you have issued but not yet been paid for.' },
+          { term: 'Interest and repayment costs', text: 'each product carries its own rate and term, so the same amount borrowed costs differently.' },
+          { term: 'Cash-flow capacity', text: 'the real test is whether the monthly repayment fits your operating surplus alongside the repayments you already carry.' }
+        ] }
+    ];
+  }
+
+  /** Wraps a plain string list with a rotating accent for its check marker. */
+  markList(items) {
+    var pal = [['#DDF2EF', '#185C5D'], ['#FBEAE4', '#C2503F'], ['#FDF1DA', '#7A560E']];
+    return items.map(function (t, i) {
+      var p = pal[i % pal.length];
+      return {
+        text: t, stroke: p[1],
+        iconStyle: 'flex:none;width:22px;height:22px;border-radius:50%;display:inline-flex;' +
+          'align-items:center;justify-content:center;margin-top:1px;background:' + p[0]
+      };
+    });
+  }
+
+  coarsePointer() {
+    return typeof window !== 'undefined' && window.matchMedia
+      && window.matchMedia('(hover: none)').matches;
+  }
+  menuEnter(key) {
+    clearTimeout(this._menuT);
+    if (this.coarsePointer()) return;
+    this.setState({ openMenu: key });
+  }
+  menuLeave() {
+    clearTimeout(this._menuT);
+    this._menuT = setTimeout(() => this.setState({ openMenu: null }), 320);
+  }
+  closeMenu() { clearTimeout(this._menuT); this.setState({ openMenu: null }); }
+
+  buildNav(menus) {
+    var page = this.state.page, openKey = this.state.openMenu;
+    var items = [
+      { label: 'Home', page: 'home' },
+      { label: 'Personal', page: 'personal' },
+      { label: 'Business', page: 'business' }
+    ];
+    // The assessment and results pages belong to the section that owns them,
+    // so the nav stays lit while an application is in progress.
+    var section = { assess: 'personal', results: 'personal', bizAssess: 'business', bizResults: 'business',
+      product: this.state.productKind === 'business' ? 'business' : 'personal' }[page] || page;
+    return items.map(it => {
+      var menu = (menus && menus[it.page]) || null;
+      var isOpen = !!menu && openKey === it.page;
+      return {
+        label: it.label,
+        menu: (menu || []).map(m => ({
+          name: m.name, onOpen: () => { this.closeMenu(); m.onOpen(); }
+        })),
+        open: isOpen,
+        expanded: menu ? isOpen : undefined,
+        onEnter: menu ? () => this.menuEnter(it.page) : undefined,
+        onLeave: menu ? () => this.menuLeave() : undefined,
+        onKeyDown: menu ? (e) => {
+          if (e.key === 'ArrowDown') { e.preventDefault(); clearTimeout(this._menuT); this.setState({ openMenu: it.page }); }
+          else if (e.key === 'Escape') this.closeMenu();
+        } : undefined,
+        onClick: () => {
+          if (menu && this.coarsePointer()) {
+            clearTimeout(this._menuT);
+            this.setState({ openMenu: isOpen ? null : it.page });
+            return;
+          }
+          this.closeMenu();
+          this.go(it.page, 1);
+        },
+        style: 'font-size:14px;padding:6px 10px;' + (section === it.page
+          ? 'color:var(--color-accent-800);background:var(--color-accent-100)'
+          : 'color:var(--color-text)')
+      };
+    });
+  }
+
+  renderVals() {
+    var s = this.state, f = s.form;
+    if (!this.ready()) return { isHome: s.page === 'home', navItems: [] };
+
+    var D = window.EDL.data, A = window.EDL.afford, P = window.EDL.pricing, M = window.EDL.markets,
+        S = window.EDL.assess, fmt = window.EDL.fmt;
+    this.applyThresholds();
+    var T = A.THRESHOLDS;
+    var priced = this.pricedForm();
+    var a = A.calculateAffordability(priced);
+    var cur = f.currency || '';
+    var profile = D.countryProfile(f.region, f.country);
+
+    // Country for the footer information views: the applicant's own selection
+    // where one exists, otherwise whatever they pick on the view itself. Never
+    // inferred from IP address or browser location.
+    var infoCountry = s.infoCountry || f.country || s.bizForm.country || '';
+    var infoCur = M.currencyForCountry(infoCountry);
+
+    var RESOURCES = this.resourceList();
+    var openRes = (s.resOpen === null || s.resOpen === undefined) ? null : RESOURCES[s.resOpen];
+
+    // Same product lists feed the homepage sections and the nav dropdowns —
+    // one source, one openProduct route. No duplicate pages or logic.
+    // One accent per product row, so the two lists read as a set rather than a
+    // uniform table. Colour is decoration only — the routing is unchanged.
+    var rowPalette = {
+      personal: { accent: '#C2503F', tint: '#FBEAE4' },
+      business: { accent: '#185C5D', tint: '#DDF2EF' }
+    };
+    var rowBase = 'display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);' +
+      'width:100%;padding:var(--space-4) var(--space-3);border-radius:10px;font-family:var(--font-heading);' +
+      'font-size:22px;font-weight:600;line-height:1.3;text-align:left;color:#3C4545;' +
+      'transition:background 200ms ease,color 200ms ease';
+    var decorate = (item, kind) => {
+      var p = rowPalette[kind];
+      return Object.assign({}, item, {
+        accent: p.accent,
+        rowStyle: rowBase,
+        rowHover: 'background:' + p.tint + ';color:' + p.accent,
+        dotStyle: 'flex:none;width:10px;height:10px;border-radius:50%;background:' + p.accent
+      });
+    };
+    var personalList = M.personalProducts(infoCountry, infoCur.code).map(m => decorate({
+      name: m.name, onOpen: () => this.openProduct('personal', m.id)
+    }, 'personal'));
+    var businessList = window.EDL.business.PRODUCTS.map(p => decorate({
+      name: p.name, onOpen: () => this.openProduct('business', p.id)
+    }, 'business'));
+
+    var vals = {
+      navItems: this.buildNav({ personal: personalList, business: businessList }),
+      isHome: s.page === 'home',
+      isPersonal: s.page === 'personal',
+      isBusiness: s.page === 'business',
+      isBizAssess: s.page === 'bizAssess',
+      isBizResults: s.page === 'bizResults' && !!s.bizResult,
+      onStartBusiness: () => this.applyBusiness(''),
+      onDemoBusiness: () => this.applyBusiness(''),
+      isAssess: s.page === 'assess',
+      isResults: s.page === 'results' && !!s.result,
+      onStart: () => this.applyPersonal(''),
+      onDemo: () => this.applyPersonal(''),
+      demoMode: s.demoMode, bizDemoMode: s.bizDemoMode,
+      goPersonal: () => this.go('personal', 1),
+      goBusiness: () => this.go('business', 1),
+      goHome: () => this.go('home', 1),
+      marketRangeNote: infoCountry
+        ? 'Lending information for ' + infoCountry + ', shown in ' + infoCur.code + '.'
+        : 'Ranges and rates follow the country selected in the assessment.',
+      isProduct: s.page === 'product' && !!s.productId,
+      homePersonalList: personalList,
+      homeBusinessList: businessList,
+      goPersonalInfo: () => this.go('personalInfo', 1),
+      goBusinessInfo: () => this.go('businessInfo', 1),
+      isPersonalInfo: s.page === 'personalInfo',
+      isBusinessInfo: s.page === 'businessInfo',
+      // Information views. No currency is assumed until a country is chosen,
+      // and once it is, every figure is read from the same configuration the
+      // application validates against.
+      infoCountry: infoCountry,
+      infoHasCountry: !!infoCountry,
+      infoCountryOptions: D.countriesForRegion('Africa').map(c => c.name),
+      infoCurrencyNote: infoCountry
+        ? 'Showing figures for ' + infoCountry + ' in ' + infoCur.code + ' (' + (infoCur.symbol || infoCur.code) + ').'
+        : '',
+      onInfoCountry: (ev) => this.setState({ infoCountry: ev.target.value }),
+      personalProducts: M.personalProducts(infoCountry, infoCur.code).map(m => {
+        var view = this.marketProductView(m, this.personalProductCopy()[m.id]);
+        return {
+          name: m.name, summary: (this.personalProductCopy()[m.id] || {}).summary || '',
+          specs: view.specs, points: view.points,
+          open: s.infoOpen === m.id,
+          toggleLabel: s.infoOpen === m.id ? 'Show less' : 'Learn more',
+          onToggle: () => this.setState(st => ({ infoOpen: st.infoOpen === m.id ? null : m.id }))
+        };
+      }),
+      businessInfoProducts: window.EDL.business.PRODUCTS.map(p => {
+        var r = window.EDL.business.productRange(p.id, infoCur.code, infoCountry) || {};
+        return {
+          name: p.name, summary: p.summary, uses: p.uses,
+          specs: [
+            { label: 'Funding range', value: r.amountLabel || '—' },
+            { label: 'Annual rate', value: r.rateLabel || '—' },
+            { label: 'Term', value: r.termLabel || '—' },
+            { label: 'Security', value: p.security }
+          ],
+          points: (this.businessProductNotes()[p.id] || []).concat(
+            r.note ? [{ term: 'Calibration', text: r.note }] : []),
+          open: s.infoOpen === p.id,
+          toggleLabel: s.infoOpen === p.id ? 'Show less' : 'Learn more',
+          onToggle: () => this.setState(st => ({ infoOpen: st.infoOpen === p.id ? null : p.id }))
+        };
+      }),
+      bandRows: A.bandTable(),
+      homeResourceCards: RESOURCES.map((r, i) => ({
+        kicker: r.kicker, title: r.title, body: r.body,
+        // Category colour rotates so the four guides read as distinct.
+        accent: ['#C2503F', '#185C5D', '#7A560E', '#185C5D'][i % 4],
+        tagStyle: 'display:inline-block;justify-self:start;padding:3px 10px;border-radius:999px;font-size:11px;' +
+          'letter-spacing:.06em;text-transform:uppercase;background:' +
+          ['#FBEAE4', '#DDF2EF', '#FDF1DA', '#DDF2EF'][i % 4] + ';color:' +
+          ['#9C3F32', '#185C5D', '#7A560E', '#12494A'][i % 4],
+        onOpen: () => this.setState({ resOpen: i })
+      })),
+      resModalOpen: s.resOpen !== null && s.resOpen !== undefined,
+      resKicker: openRes ? openRes.kicker : '',
+      resTitle: openRes ? openRes.title : '',
+      resIntro: openRes ? openRes.intro : '',
+      resPoints: openRes ? openRes.points : [],
+      closeRes: () => this.setState({ resOpen: null }),
+      stopClick: (e) => e.stopPropagation(),
+      // Product cards read straight from the business module, so the landing
+      // page and the funding step can never quote different terms.
+      personalOverviewProducts: M.personalProducts(infoCountry, infoCur.code).map(m => {
+        var copy = this.personalProductCopy()[m.id] || {};
+        return {
+          title: m.name, body: copy.summary || m.summary || '',
+          range: infoCountry ? m.amountLabel : 'Shown once you select a country',
+          term: m.termLabel,
+          rate: infoCountry ? m.rateLabel : 'Shown once you select a country',
+          structure: 'Equal monthly repayments',
+          onOpen: () => this.openProduct('personal', m.id)
+        };
+      }),
+      personalNeeds: [
+        { title: 'About you', body: 'Age, country and your employment or income situation.' },
+        { title: 'Income figures', body: 'What you take home each month and how regular it is.' },
+        { title: 'Simulated verification', body: 'Identity, phone and account ownership. Nothing is uploaded or stored.' },
+        { title: 'Existing commitments', body: 'Essential spending and any repayments you already make.' }
+      ],
+      personalSteps: [
+        { n: '1', title: 'About you', body: 'Who you are and what kind of applicant this is.' },
+        { n: '2', title: 'Financial information', body: 'Income in, essential costs out, and what you already repay.' },
+        { n: '3', title: 'Your loan', body: 'Pick a product. We calculate the cost for you.' }
+      ],
+      businessProducts: window.EDL.business.PRODUCTS.map(p => {
+        var r = window.EDL.business.productRange(p.id, infoCur.code, infoCountry) || {};
+        return {
+          title: p.name, body: p.summary, uses: p.uses,
+          range: infoCountry ? r.amountLabel : 'Shown once you select a country',
+          term: r.termLabel || p.term,
+          rate: infoCountry ? r.rateLabel : 'Shown once you select a country',
+          security: p.security, structure: p.structure,
+          onOpen: () => this.applyBusiness(p.id)
+        };
+      }),
+      // Homepage product rows carry names only; every figure lives on the
+      // product page, and the country that fixes the currency is chosen there
+      // or inside the assessment.
+      homeEligibleIndividuals: this.markList([
+        'Aged 18 or over',
+        'Some evidence of regular income',
+        'Thin-file applicants with alternative financial information',
+        'Applicants in salaried or regular employment'
+      ]),
+      homeEligibleBusinesses: this.markList([
+        'Registered business',
+        'Sole trader',
+        'Informal micro or small business',
+        'Self-employed business operator'
+      ]),
+      homeNeedsPersonal: this.markList([
+        'Simulated government ID verification',
+        'Phone and account ownership',
+        'Income and essential expenses',
+        'Existing monthly commitments',
+        'Relevant financial history where available'
+      ]),
+      homeNeedsBusiness: this.markList([
+        'Owner or signatory verification',
+        'Business registration where it applies',
+        'Evidence of trading activity',
+        'Revenue and cash-flow figures',
+        'Bank, mobile-money or invoice records where available'
+      ]),
+      homeSteps: [
+        { n: '01', title: 'About you or your business', body: 'Who you are and what kind of applicant this is. Simulated checks only.' },
+        { n: '02', title: 'Financial information', body: 'What comes in and what already goes out each month.' },
+        { n: '03', title: 'Loan or funding request', body: 'The cost is calculated for you before you continue.' }
+      ].map(function (s, i) {
+        var c = ['#F2C66D', '#E56A5D', '#4FA7A5'][i % 3];
+        var t = ['#B4801F', '#C2503F', '#2E8384'][i % 3];
+        return Object.assign({}, s, {
+          accent: c,
+          numStyle: 'font-family:var(--font-heading);font-weight:600;font-size:44px;line-height:1;color:' + t
+        });
+      }),
+      homePrinciples: [
+        { title: 'Affordability first', body: 'Repayment capacity is settled before any positive indicator is read. A strong record cannot override an unaffordable repayment.' },
+        { title: 'Transparent pricing', body: 'The rate, monthly repayment, total interest and total repayable are shown before you commit. Illustrative pricing, not a live lending rate.' },
+        { title: 'Explainable recommendations', body: 'Every result states its reasons in plain language, with the full rule trace available to read.' },
+        { title: 'Alternative data where relevant', body: 'Bill payments, mobile money and transaction history can evidence reliability where no credit file exists. A missing history is an absence of information, not evidence of risk.' },
+        { title: 'Human review', body: 'Any outcome can be escalated to a person, whatever the rules concluded.' }
+      ].map(function (p, i) {
+        var c = ['#185C5D', '#E56A5D', '#4FA7A5', '#F2C66D', '#C2503F'][i % 5];
+        return Object.assign({}, p, {
+          markerStyle: 'flex:none;width:14px;height:14px;border-radius:4px;margin-top:.45em;background:' + c
+        });
+      }),
+      businessNeeds: [
+        { title: 'Business basics', body: 'Type, sector and how long you have been trading.' },
+        { title: 'Cash-flow figures', body: 'Average monthly revenue, operating expenses and existing repayments.' },
+        { title: 'Simulated verification', body: 'Owner ID, registration where it applies, business address and account ownership.' },
+        { title: 'Trading records', body: 'Whatever exists: bank, mobile money, merchant takings, invoices.' }
+      ],
+      businessSteps: [
+        { n: '1', title: 'Business & verification', body: 'Who you are and what kind of business this is.' },
+        { n: '2', title: 'Business finances', body: 'Revenue in, costs out, and what you already repay.' },
+        { n: '3', title: 'Funding request', body: 'Pick a product. We calculate the cost for you.' }
+      ],
+      businessTerms: [
+        { title: 'Priced before you commit', body: 'Monthly repayment, total interest and total repayable are shown before you continue.' },
+        { title: 'Cash flow first', body: 'Capacity to repay is settled before any positive trading indicator is read.' },
+        { title: 'No hidden weighting', body: 'Country and business type change which questions apply, never the outcome.' }
+      ]
+    };
+
+    // ---- product information page ---------------------------------------
+    // One product's own page. Every figure is read from the same market and
+    // business configuration the application validates against; nothing is
+    // quoted in a currency before a country is known.
+    var withheld = 'Shown once you select a country';
+    if (s.productId) {
+      if (s.productKind === 'business') {
+        var bp = window.EDL.business.PRODUCTS.filter(p => p.id === s.productId)[0];
+        if (bp) {
+          var br = window.EDL.business.productRange(bp.id, infoCur.code, infoCountry) || {};
+          vals.productKicker = 'Business finance';
+          vals.productName = bp.name;
+          vals.productSummary = '';
+          vals.productHasSummary = false;
+          vals.productSpecs = [
+            { label: 'Funding range', value: infoCountry ? (br.amountLabel || '—') : withheld },
+            { label: 'Annual rate', value: infoCountry ? (br.rateLabel || '—') : withheld },
+            { label: 'Funding term', value: br.termLabel || bp.term },
+            { label: 'Security', value: bp.security }
+          ];
+          vals.productPoints = (this.businessProductNotes()[bp.id] || []).concat(
+            infoCountry && br.note ? [{ term: 'Calibration', text: br.note }] : []);
+          vals.productEligibility = [
+            'Registered businesses, sole traders and eligible informal businesses',
+            'Businesses with evidence of active trading',
+            'Businesses with sufficient revenue or cash flow to support repayment',
+            'An owner, director or authorised representative able to complete the application'
+          ];
+          vals.productRequired = [
+            'Owner, director or authorised signatory identification',
+            'Business registration information where applicable',
+            'Evidence of business revenue or trading activity',
+            'Bank or mobile-money transaction history where available'
+          ].concat(this.businessProductRequirement(bp.id));
+          vals.productStartLabel = 'Apply for loan';
+          vals.productStart = () => this.applyBusiness(s.productId);
+        }
+      } else {
+        var mp = M.personalProducts(infoCountry, infoCur.code).filter(p => p.id === s.productId)[0];
+        if (mp) {
+          var copy = this.personalProductCopy()[mp.id] || {};
+          var view = this.marketProductView(mp, copy);
+          vals.productKicker = 'Personal lending';
+          vals.productName = mp.name;
+          vals.productSummary = copy.summary || mp.summary || '';
+          vals.productHasSummary = !!vals.productSummary;
+          vals.productSpecs = [
+            { label: 'Amount', value: infoCountry ? mp.amountLabel : withheld },
+            { label: 'Annual rate', value: infoCountry ? mp.rateLabel : withheld },
+            { label: 'Loan term', value: mp.termLabel },
+            { label: 'Repayment', value: 'Equal monthly repayments' }
+          ];
+          vals.productPoints = infoCountry ? view.points : (copy.points || []);
+          vals.productEligibility = [
+            'Applicants aged 18 or over',
+            'Applicants with regular or reasonably consistent income',
+            'Applicants in one of the supported African markets',
+            'Applicants whose requested repayment is affordable based on the information provided'
+          ];
+          vals.productRequired = [
+            'Government-issued identification',
+            'Proof or evidence of income',
+            'Bank or mobile-money account details',
+            'Proof of address where required',
+            'Relevant financial history where available'
+          ];
+          if (/salary/.test(mp.id)) {
+            vals.productEligibility[1] = 'Applicants in salaried or regular employment';
+            vals.productRequired[1] = 'Evidence of regular employment income';
+          } else if (/emergency/.test(mp.id)) {
+            vals.productEligibility[1] = 'Applicants with regular income, including thin-file applicants with alternative financial information';
+          }
+          vals.productStartLabel = 'Apply for loan';
+          vals.productStart = () => this.applyPersonal(s.productId);
+        }
+      }
+    }
+
+    // ---- assessment flow -------------------------------------------------
+    var stepMeta = [
+      { label: 'About you', title: 'About you & verification',
+        blurb: 'Simulated checks only. No documents, ID numbers or account details are collected.' },
+      { label: 'Your finances', title: 'Your finances',
+        blurb: 'What comes in and what already goes out each month.' },
+      { label: 'Your loan', title: 'Your loan', blurb: '' }
+    ];
+    vals.stepTitle = stepMeta[s.step - 1].title;
+    vals.stepBlurb = stepMeta[s.step - 1].blurb;
+    vals.hasStepBlurb = !!vals.stepBlurb;
+    vals.progressSteps = stepMeta.map((m, i) => {
+      var n = i + 1, current = n === s.step, done = n < s.step;
+      return {
+        n: n, label: m.label,
+        style: 'padding:var(--space-3) var(--space-4);border-radius:var(--radius-md);border:1px solid ' +
+          (current ? 'var(--color-accent)' : 'var(--color-divider)') +
+          ';background:' + (current ? 'var(--color-accent-100)' : 'transparent') +
+          ';opacity:' + (done || current ? '1' : '0.55')
+      };
+    });
+    vals.isStep1 = s.step === 1; vals.isStep2 = s.step === 2;
+    vals.isStep3 = s.step === 3;
+    vals.submittedHere = !!s.submitted && s.step === 3;
+    vals.showNext = !vals.submittedHere;
+    vals.errors = s.errors; vals.hasErrors = s.errors.length > 0;
+    vals.backLabel = s.step === 1 ? 'Back' : 'Back';
+    vals.nextLabel = s.step === 3 ? 'Apply for loan' : 'Continue';
+    vals.onBack = () => this.back();
+    vals.onNext = () => this.next();
+    vals.form = f;
+    vals.currencySuffix = cur ? '(' + cur + ')' : '';
+
+    vals.demoProfiles = window.EDL.demos.map(d => ({
+      name: d.name.split(' ').slice(0, 2).join(' '), summary: d.summary,
+      onLoad: () => this.loadDemo(d),
+      style: 'cursor:pointer;padding:var(--space-2) var(--space-3);font-family:inherit;font-size:13px;color:var(--color-text);border-radius:999px;background:' +
+        (s.demoId === d.id ? 'var(--color-accent-100)' : 'transparent') + ';border:1px solid ' +
+        (s.demoId === d.id ? 'var(--color-accent)' : 'var(--color-divider)')
+    }));
+    vals.demoLoadedName = s.demoLoadedName;
+
+    vals.countryOptions = D.countriesForRegion(f.region);
+    vals.setCountry = (ev) => {
+      var name = ev.target.value;
+      var p = D.countryProfile(f.region, name);
+      var code = p ? p.currency : '';
+      // Amounts, terms and the rate basis differ by market, so a country change
+      // re-reads the selected product's configuration rather than keeping
+      // figures that belong to another country.
+      var m = st0 => window.EDL.markets.product('personal', st0.form.loanProduct, name, code);
+      this.setState(st => {
+        var mp = m(st);
+        return {
+          form: Object.assign({}, st.form, {
+            country: name, currency: code,
+            rateBasis: mp ? mp.rateBasis : st.form.rateBasis,
+            interestRate: mp ? String(mp.defaultRate) : st.form.interestRate,
+            loanTermMonths: mp ? String(mp.defaultTerm) : st.form.loanTermMonths
+          }),
+          errors: []
+        };
+      });
+    };
+    vals.setIs18 = (ev) => this.set('is18', ev.target.checked);
+    vals.employmentNames = ['Salaried', 'Self-employed', 'Informal income', 'Business owner', 'Other'];
+    vals.setEmployment = (ev) => this.set('employmentType', ev.target.value);
+    vals.regularityNames = ['Stable', 'Mostly stable', 'Irregular'];
+    vals.setRegularity = (ev) => this.set('incomeRegularity', ev.target.value);
+
+    var field = (key, label, hint) => ({
+      id: 'edl-' + key, hintId: 'edl-' + key + '-hint', label: label, hint: hint,
+      value: f[key], onChange: (ev) => this.set(key, ev.target.value)
+    });
+    vals.financeFields = [
+      field('monthlyIncome', 'Monthly income ' + vals.currencySuffix, 'All regular income, after tax.'),
+      field('essentialExpenses', 'Essential monthly expenses ' + vals.currencySuffix, 'Housing, food, transport, utilities, dependants.'),
+      field('existingDebt', 'Existing monthly repayments ' + vals.currencySuffix, 'Current credit repayments. Enter 0 if none.')
+    ];
+    // Loan products for the selected market. Amounts, terms and the rate basis
+    // all come from markets.js — the same configuration the information view
+    // displays and the validation checks against.
+    var personalList = M.personalProducts(f.country, cur);
+    var selProduct = null;
+    for (var pi = 0; pi < personalList.length; pi++) {
+      if (personalList[pi].id === f.loanProduct) selProduct = personalList[pi];
+    }
+    vals.personalMarketProducts = personalList.map(m => ({
+      name: m.name, amountLabel: m.amountLabel, termLabel: m.termLabel, rateLabel: m.rateLabel,
+      onSelect: () => this.selectLoanProduct(m.id),
+      style: 'display:grid;gap:4px;text-align:left;padding:var(--space-3);cursor:pointer;font:inherit;' +
+        'border:1px solid ' + (f.loanProduct === m.id ? 'var(--color-accent)' : 'var(--color-divider)') + ';' +
+        'background:' + (f.loanProduct === m.id ? 'var(--color-accent-100)' : 'transparent')
+    }));
+    vals.loanProductNote = '';
+    vals.hasLoanProductNote = false;
+    var basisWord = selProduct ? M.basisSuffix(selProduct.rateBasis).trim() : 'a year';
+    vals.rateBasisNote = selProduct
+      ? 'The rate you enter is ' + basisWord + ', as quoted for this product in ' + (f.country || 'this market') + '.'
+      : '';
+    vals.loanFields = [
+      field('loanAmount', 'Loan amount ' + vals.currencySuffix,
+        selProduct ? '' + selProduct.amountLabel : 'Choose a product to see the range.'),
+      field('loanTermMonths', 'Term (months)',
+        selProduct ? '' + selProduct.termLabel : 'Repayment period in whole months.'),
+      field('interestRate', basisWord === 'a year' ? 'Annual interest rate (%)' : 'Interest rate (% ' + basisWord + ')',
+        selProduct ? '' + selProduct.rateLabel : 'Choose a product to see the range.')
+    ];
+
+    // Position before the loan, from the same affordability module.
+    var beforeLoan = A.calculateAffordability(Object.assign({}, f, { proposedRepayment: 0 }));
+    vals.preLoanRows = [
+      { label: 'Debt-to-income', value: fmt.pct(beforeLoan.debtToIncome), note: 'existing repayments against income' },
+      { label: 'Left over each month', value: beforeLoan.valid ? fmt.money(beforeLoan.disposableIncome, cur) : '—', note: 'after essentials and existing repayments' }
+    ];
+
+    var pricing = priced.pricing;
+    vals.pricingLabel = P.PRICING_LABEL + '.';
+    vals.loanSummaryRows = [
+      { label: 'Monthly repayment', value: pricing.valid ? fmt.money(pricing.monthlyRepayment, cur) : '—',
+        note: pricing.valid ? pricing.rateLabel + ' over ' + pricing.termMonths + ' months' : 'enter amount, term and rate' },
+      { label: 'Total interest', value: pricing.valid ? fmt.money(pricing.totalInterest, cur) : '—', note: 'over the whole term' },
+      { label: 'Total repayable', value: pricing.valid ? fmt.money(pricing.totalRepayment, cur) : '—', note: 'amount plus interest' },
+      { label: 'Post-loan commitment', value: fmt.pct(a.postLoanCommitment), note: 'all repayments against income' },
+      { label: 'Left over each month', value: a.valid ? fmt.money(a.disposableIncome, cur) : '—', note: 'after essentials and all repayments' }
+    ];
+
+    // ---- simulated verification -------------------------------------------
+    var K = window.EDL.kyc;
+    var stateStyle = function (state) {
+      if (state === K.VERIFIED) return 'background:var(--color-accent-100);color:var(--color-accent-800)';
+      if (state === K.PENDING) return 'background:var(--color-neutral-200);color:var(--color-neutral-800)';
+      return 'background:transparent;color:var(--color-neutral-700);border:1px solid var(--color-divider)';
+    };
+    var relStyle = function (relevance) {
+      return relevance === 'required'
+        ? 'background:var(--color-accent-100);color:var(--color-accent-800)'
+        : 'background:transparent;color:var(--color-neutral-700);border:1px solid var(--color-divider)';
+    };
+    var kycChecks = K.personalChecks(f, profile);
+    vals.kycSimulationNote = K.SIMULATION_LABEL + '. Country sets which example methods are shown, never the outcome.';
+    vals.kycAuto = kycChecks.filter(c => c.auto).map(c => ({
+      label: c.label, state: c.state, stateStyle: stateStyle(c.state)
+    }));
+    vals.kycEditable = kycChecks.filter(c => !c.auto).map(c => ({
+      label: c.label, help: c.help,
+      relevanceLabel: c.relevanceLabel, tagStyle: relStyle(c.relevance),
+      methodsLine: c.methods.join(' · '),
+      state: c.state, options: c.options, locked: !c.applicable,
+      onChange: (ev) => this.set('kyc', K.setState(this.state.form.kyc, c.key, ev.target.value))
+    }));
+    vals.onSimulateVerified = () => this.set('kyc', K.markAll(kycChecks, K.VERIFIED));
+    vals.onClearKyc = () => this.set('kyc', K.defaultPersonalStates());
+    vals.liveBandLabel = a.bandLabel;
+    vals.liveBandStyle = 'padding:var(--space-3);font-family:var(--font-heading);font-size:16px;border-radius:var(--radius-md);border:1px solid ' +
+      (a.band === 'affordable' ? 'var(--color-accent)' : a.band ? 'var(--color-text)' : 'var(--color-divider)') +
+      ';background:' + (a.band === 'affordable' ? 'var(--color-accent-100)' : a.band === 'high' ? 'var(--color-neutral-300)' : 'transparent');
+
+    var help = {
+      creditHistory: 'Bureau record or lender repayment record held about you.',
+      bankConsistency: 'Regularity of formal bank account inflows and outflows.',
+      utilityPayments: 'Record of paying utilities, rent or other recurring bills on time.',
+      mobileMoney: 'Wallet transaction and repayment record with a mobile-money provider.'
+    };
+    var optionSets = {
+      creditHistory: ['Strong', 'Moderate', 'Limited', 'Unavailable'],
+      bankConsistency: ['Strong', 'Moderate', 'Weak', 'Unavailable'],
+      utilityPayments: ['Good', 'Mixed', 'Poor', 'Unavailable'],
+      mobileMoney: ['Strong', 'Moderate', 'Limited', 'Unavailable']
+    };
+    var context = D.sourceContext(profile);
+    var keys = S.activeSignalKeys(f.region);
+    var order = keys.slice().sort((x, y) => {
+      var ex = context[x].emphasis ? 0 : 1, ey = context[y].emphasis ? 0 : 1;
+      if (ex !== ey) return ex - ey;
+      return keys.indexOf(x) - keys.indexOf(y);
+    });
+    vals.signalGroups = order.map(key => ({
+      key: key,
+      label: S.SIGNAL_MAP[key].label + (S.SIGNAL_MAP[key].optional ? ' (optional)' : ''),
+      help: help[key],
+      contextLabel: context[key].label,
+      tagStyle: context[key].emphasis
+        ? 'background:var(--color-accent-100);color:var(--color-accent-800)'
+        : 'background:var(--color-neutral-200);color:var(--color-neutral-800)',
+      options: this.radioOptions(optionSets[key], f[key], key)
+    }));
+    vals.recapTag = 'One input among several';
+    vals.recapLine = (f.employmentType || 'Employment not stated') + ' · ' +
+      (f.monthlyIncome ? fmt.money(f.monthlyIncome, cur) + ' per month' : 'income not stated') + ' · ' +
+      (f.incomeRegularity || 'regularity not stated');
+
+    // ---- results ---------------------------------------------------------
+    var r = s.result;
+    if (r) {
+      var ra = r.affordability;
+      var rp = r.pricing || {};
+      var toneStyle = {
+        standard: 'background:var(--color-accent);color:#FFFFFF',
+        reduced: 'border:1px solid var(--color-accent);background:var(--color-accent-100)',
+        review: 'border:1px solid var(--color-divider)',
+        declined: 'background:var(--color-accent-900);color:#FFFFFF'
+      }[r.tone];
+      vals.recStyle = 'padding:var(--space-6);border-radius:var(--radius-md);' + toneStyle;
+      vals.recTitle = r.recommendation;
+      vals.recNote = {
+        standard: 'Affordable on the information given and supported by positive indicators. An assessment result, not a credit approval.',
+        reduced: 'Supported, but not at the amount requested. An assessment result, not a credit approval.',
+        review: 'The rules cannot fairly settle this on their own, so it goes to a person. Neither an approval nor a refusal.',
+        declined: 'On the information given, this amount would not be affordable. An affordability outcome, not a credit refusal.'
+      }[r.tone];
+
+      vals.resultMetrics = [
+        { label: 'Estimated monthly repayment', value: rp.valid ? fmt.money(rp.monthlyRepayment, cur) : '—', note: rp.valid ? rp.rateLabel + ' over ' + rp.termMonths + ' months' : 'illustrative pricing' },
+        { label: 'Post-loan commitment', value: fmt.pct(ra.postLoanCommitment), note: ra.bandLabel },
+        { label: 'Disposable income', value: fmt.money(ra.disposableIncome, cur), note: 'per month, after essentials and debt' },
+        { label: 'Total interest', value: rp.valid ? fmt.money(rp.totalInterest, cur) : '—', note: rp.valid ? 'total repayable ' + fmt.money(rp.totalRepayment, cur) : 'illustrative pricing' }
+      ];
+      var rk = r.kycStatus || K.kycStatus(r.kycChecks || []);
+      vals.kycStatusLabel = rk.label;
+      vals.kycStatusNote = rk.note;
+      vals.kycStatusStyle = stateStyle(rk.status === 'verified' ? K.VERIFIED : rk.status === 'pending' ? K.PENDING : K.NOT_PROVIDED);
+      vals.kycResultChecks = (r.kycChecks || []).map(c => ({
+        label: c.label, state: c.state, stateStyle: stateStyle(c.state)
+      }));
+
+      vals.explanation = r.explanation;
+      vals.positives = r.positives; vals.hasPositives = r.positives.length > 0; vals.noPositives = r.positives.length === 0;
+      vals.concerns = r.concerns; vals.hasConcerns = r.concerns.length > 0; vals.noConcerns = r.concerns.length === 0;
+      vals.unavailableList = r.sourcesUnavailable.map(e => e.label);
+      vals.hasUnavailable = r.sourcesUnavailable.length > 0;
+      vals.noUnavailable = r.sourcesUnavailable.length === 0;
+
+      var treatment = {
+        positive: 'Counted as a positive indicator.',
+        neutral: 'Considered, treated as neither positive nor negative.',
+        negative: 'Counted as a negative indicator.',
+        unavailable: 'Recorded as absent information. Not counted against the applicant.'
+      };
+      vals.sourceRows = r.signals.map(e => ({ label: e.label, answer: e.answer, treatment: treatment[e.weight] }));
+
+      vals.showReduced = r.tone === 'reduced';
+      vals.showTrace = s.showTrace;
+      vals.traceToggleLabel = s.showTrace ? 'Hide how this was assessed' : 'How was this assessed?';
+      vals.onToggleTrace = () => this.setState(st => ({ showTrace: !st.showTrace }));
+      vals.trace = r.trace.map((t, i) => ({
+        id: t.id, text: t.text, detail: t.detail,
+        firedLabel: t.fired ? 'Applied' : 'Not engaged',
+        style: 'display:grid;grid-template-columns:32px minmax(0,1fr) 82px;gap:var(--space-3);padding:var(--space-3);align-items:start;' +
+          (i ? 'border-top:1px solid var(--color-divider);' : '') +
+          'opacity:' + (t.fired ? '1' : '0.55')
+      }));
+
+      vals.humanReviewRequested = s.humanReviewRequested;
+      vals.reviewRef = s.reviewRef;
+      vals.onRequestReview = () => this.setState({
+        humanReviewRequested: true,
+        reviewRef: 'HR-' + String(Math.floor(Math.random() * 9000) + 1000)
+      });
+      vals.onEditInputs = () => this.go('assess', 3);
+      vals.onRestart = () => this.restart();
+    }
+
+    // ---- business journey --------------------------------------------------
+    var B = window.EDL.business;
+    var b = s.bizForm;
+    var bizProfile = D.countryProfile(b.region, b.country);
+    var bizCur = b.currency || '';
+    var bizPriced = B.withPricing(b);
+    var bizCash = B.calculateCashFlow(bizPriced);
+
+    var bizStepMeta = [
+      { label: 'Business', title: 'Business & verification',
+        blurb: '' },
+      { label: 'Finances', title: 'Business finances',
+        blurb: '' },
+      { label: 'Funding', title: 'Funding request', blurb: '' }
+    ];
+    var bizMeta = bizStepMeta[s.bizStep - 1] || bizStepMeta[0];
+    vals.bizStepTitle = bizMeta.title;
+    vals.bizStepBlurb = bizMeta.blurb;
+    vals.hasBizStepBlurb = !!vals.bizStepBlurb;
+    vals.bizProgressSteps = bizStepMeta.map((m, i) => {
+      var n = i + 1, done = n < s.bizStep, current = n === s.bizStep;
+      return {
+        n: n, label: m.label,
+        style: 'padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);border:1px solid ' +
+          (current ? 'var(--color-accent)' : 'var(--color-divider)') + ';background:' +
+          (current ? 'var(--color-accent-100)' : done ? 'var(--color-neutral-200)' : 'transparent') +
+          ';opacity:' + (done || current ? '1' : '0.55')
+      };
+    });
+    vals.isBizStep1 = s.bizStep === 1; vals.isBizStep2 = s.bizStep === 2;
+    vals.isBizStep3 = s.bizStep === 3;
+    vals.bizSubmittedHere = !!s.bizSubmitted && s.bizStep === 3;
+    vals.bizShowNext = !vals.bizSubmittedHere;
+    vals.bizErrors = s.bizErrors; vals.bizHasErrors = s.bizErrors.length > 0;
+    vals.bizNextLabel = s.bizStep === 3 ? 'Apply for loan' : 'Continue';
+    vals.onBizNext = () => this.bizNext();
+    vals.onBizBack = () => this.bizBack();
+    vals.bizForm = b;
+    vals.bizDemoSummary = B.DEMO.summary;
+
+    vals.businessTypeNames = B.BUSINESS_TYPES;
+    vals.sectorNames = B.SECTORS;
+    vals.tradingNames = B.TRADING_HISTORY;
+    vals.consistencyNames = B.CASHFLOW_CONSISTENCY;
+    vals.bizCountryOptions = D.countriesForRegion(b.region);
+    vals.setBizCountry = (ev) => {
+      var name = ev.target.value, p = D.countryProfile(b.region, name);
+      var code = p ? p.currency : '';
+      this.setState(st => {
+        var mp = window.EDL.markets.product('business', st.bizForm.product, name, code);
+        return {
+          bizForm: Object.assign({}, st.bizForm, {
+            country: name, currency: code,
+            termMonths: mp ? String(mp.defaultTerm) : st.bizForm.termMonths,
+            interestRate: mp ? String(mp.defaultRate) : st.bizForm.interestRate
+          }),
+          bizErrors: []
+        };
+      });
+    };
+    vals.setBizType = (ev) => this.setBiz('businessType', ev.target.value);
+    vals.setBizSector = (ev) => this.setBiz('sector', ev.target.value);
+    vals.setBizTrading = (ev) => this.setBiz('tradingHistory', ev.target.value);
+    vals.setBizOwner = (ev) => this.setBiz('applicantIsOwner', ev.target.checked);
+    vals.setBizConsistency = (ev) => this.setBiz('cashFlowConsistency', ev.target.value);
+
+    var bizChecks = K.businessChecks({ businessType: b.businessType, applicantIsOwner: b.applicantIsOwner, kyc: b.kyc }, bizProfile);
+    vals.bizKycChecks = bizChecks.map(c => ({
+      label: c.label, relevanceLabel: c.relevanceLabel, tagStyle: relStyle(c.relevance),
+      methodsLine: c.methods.join(' · '),
+      state: c.state, options: c.options, locked: !c.applicable,
+      onChange: (ev) => this.setBiz('kyc', K.setState(this.state.bizForm.kyc, c.key, ev.target.value))
+    }));
+    vals.onSimulateBizVerified = () => this.setBiz('kyc', K.markAll(bizChecks, K.VERIFIED));
+
+    var bizCurSuffix = bizCur ? '(' + bizCur + ')' : '';
+    var bizField = (key, label, hint) => ({
+      id: 'biz-' + key, hintId: 'biz-' + key + '-hint', label: label, hint: hint,
+      value: b[key], onChange: (ev) => this.setBiz(key, ev.target.value)
+    });
+    vals.bizFinanceFields = [
+      bizField('monthlyRevenue', 'Average monthly revenue ' + bizCurSuffix, 'Typical takings across a normal month.'),
+      bizField('operatingExpenses', 'Monthly operating expenses ' + bizCurSuffix, 'Stock, wages, rent, utilities, transport.'),
+      bizField('existingBusinessDebt', 'Existing monthly business repayments ' + bizCurSuffix, 'Current business credit. Enter 0 if none.')
+    ];
+    vals.bizPreRows = [
+      { label: 'Operating cash surplus', value: bizCash.valid ? fmt.money(bizCash.operatingSurplus, bizCur) : '—',
+        note: 'revenue less operating expenses' },
+      { label: 'Existing debt burden', value: fmt.pct(bizCash.debtBurden), note: 'existing repayments against revenue' },
+      { label: 'Available cash flow', value: bizCash.valid ? fmt.money(bizCash.availableCashFlow, bizCur) : '—',
+        note: 'surplus after existing repayments' }
+    ];
+
+    vals.productChoices = B.PRODUCTS.map(p => {
+      var pcr = B.productRange(p.id, bizCur, b.country);
+      return {
+      name: p.name, summary: p.summary,
+      terms: (b.country && pcr)
+        ? pcr.amountLabel + ' · ' + pcr.termLabel + ' · ' + pcr.rateLabel
+        : 'Shown once you select a country',
+      onSelect: () => this.setState(st => ({
+        bizForm: B.selectProduct(st.bizForm, p.id), bizErrors: []
+      })),
+      style: 'text-align:left;cursor:pointer;padding:var(--space-3);font-family:inherit;color:var(--color-text);border-radius:10px;background:' +
+        (b.product === p.id ? 'var(--color-accent-100)' : 'transparent') + ';border:1px solid ' +
+        (b.product === p.id ? 'var(--color-accent)' : 'var(--color-divider)')
+    };
+    });
+    vals.hasProduct = !!b.product;
+    var selectedProduct = B.productById(b.product);
+    vals.productFieldsTitle = selectedProduct ? selectedProduct.name + ' details' : 'Product details';
+    vals.productExtraFields = B.productFields(b.product).map(fd => ({
+      id: 'biz-' + fd.key, label: fd.label, hint: fd.hint,
+      isSelect: fd.type === 'select', isMoney: fd.type === 'money',
+      options: fd.options || [],
+      value: b[fd.key], onChange: (ev) => this.setBiz(fd.key, ev.target.value)
+    }));
+    // Hints quote the selected product's own illustrative limits, so the range
+    // shown beneath each field is the range the form validates against.
+    var pr = B.productRange(b.product, bizCur, b.country);
+    vals.bizLoanFields = [
+      bizField('fundingAmount', 'Funding amount ' + bizCurSuffix, pr ? '' + pr.amountLabel : 'How much the business needs.'),
+      bizField('termMonths', 'Term (months)', pr ? '' + pr.termLabel : 'Repayment period in whole months.'),
+      bizField('interestRate', (!pr || pr.rateBasis === 'annual') ? 'Annual interest rate (%)'
+        : 'Interest rate (% ' + window.EDL.markets.basisSuffix(pr.rateBasis).trim() + ')',
+        pr ? '' + pr.rateLabel : 'Choose a product to see the range.')
+    ];
+    vals.productRangeLine = '';
+
+    var bp = bizPriced.pricing;
+    vals.bizSummaryRows = [
+      { label: 'Monthly repayment', value: bp.valid ? fmt.money(bp.monthlyRepayment, bizCur) : '—',
+        note: bp.valid ? bp.rateLabel + ' over ' + bp.termMonths + ' months' : 'enter amount, term and rate' },
+      { label: 'Total interest', value: bp.valid ? fmt.money(bp.totalInterest, bizCur) : '—', note: 'over the whole term' },
+      { label: 'Total repayable', value: bp.valid ? fmt.money(bp.totalRepayment, bizCur) : '—', note: 'amount plus interest' },
+      { label: 'Repayment capacity', value: fmt.pct(bizCash.repaymentCapacity), note: 'all repayments against operating surplus' },
+      { label: 'Cash remaining', value: bizCash.valid ? fmt.money(bizCash.remainingCash, bizCur) : '—',
+        note: 'each month, after expenses and all repayments' }
+    ];
+    vals.capacityFormula = 'Repayment capacity = ' + B.CAPACITY_FORMULA +
+      '. The band it falls into is an illustrative assumption, not a regulatory or industry threshold.';
+    var bizBandTone = { comfortable: 'affordable', concern: 'concern', severe: 'high' }[bizCash.band] || null;
+    vals.bizBandLabel = bizCash.bandLabel;
+    vals.bizBandStyle = 'padding:var(--space-3);border-radius:var(--radius-md);font-size:13px;font-weight:600;text-align:center;background:' +
+      (bizBandTone === 'affordable' ? 'var(--color-accent-100);color:var(--color-accent-800)'
+        : bizBandTone === 'concern' ? 'var(--color-neutral-200);color:var(--color-text)'
+        : bizBandTone === 'high' ? 'var(--color-text);color:var(--color-surface)'
+        : 'transparent;color:var(--color-neutral-700);border:1px dashed var(--color-divider)');
+
+    vals.bizSignalGroups = B.activeSignalKeys(b.product).map(key => {
+      var def = B.SIGNAL_MAP[key];
+      return {
+        label: def.label, help: def.help,
+        options: Object.keys(def.values).map(v => ({
+          name: 'biz-' + key, value: v, checked: b[key] === v,
+          onChange: () => this.setBiz(key, v)
+        }))
+      };
+    });
+
+    if (s.page === 'bizResults' && s.bizResult) {
+      var br = s.bizResult, bc = br.cashFlow, brp = br.pricing || {};
+      vals.bizRecTitle = br.recommendation;
+      vals.bizRecStyle = 'padding:var(--space-6);border-radius:12px;border:1px solid ' +
+        (br.tone === 'suitable' ? 'var(--color-accent);background:var(--color-accent-100);color:var(--color-accent-800)'
+          : br.tone === 'declined' ? 'var(--color-text);background:var(--color-text);color:var(--color-surface)'
+          : 'var(--color-divider);background:var(--color-neutral-200);color:var(--color-text)');
+      vals.bizRecNote = {
+        suitable: 'Repayment capacity and trading indicators both support the request as submitted. An illustrative assessment result, not a finance approval.',
+        reduced: 'The request is workable at a smaller amount or a longer term.',
+        review: 'The rules cannot fairly settle this request on their own.',
+        declined: 'The amount requested is not supported by current business cash flow.'
+      }[br.tone];
+      vals.bizResultMetrics = [
+        { label: 'Estimated monthly repayment', value: brp.valid ? fmt.money(brp.monthlyRepayment, bizCur) : '—',
+          note: brp.valid ? brp.rateLabel + ' over ' + brp.termMonths + ' months' : 'illustrative pricing' },
+        { label: 'Repayment-capacity ratio', value: fmt.pct(bc.repaymentCapacity), note: bc.bandLabel + ' · illustrative band' },
+        { label: 'Remaining monthly cash', value: fmt.money(bc.remainingCash, bizCur), note: 'after expenses and all repayments' },
+        { label: 'Total interest', value: brp.valid ? fmt.money(brp.totalInterest, bizCur) : '—',
+          note: brp.valid ? 'total repayable ' + fmt.money(brp.totalRepayment, bizCur) : 'illustrative pricing' }
+      ];
+      var brk = br.kycStatus || K.kycStatus(br.kycChecks || []);
+      vals.bizKycStatusLabel = brk.label;
+      vals.bizKycStatusNote = brk.note;
+      vals.bizKycStatusStyle = stateStyle(brk.status === 'verified' ? K.VERIFIED : brk.status === 'pending' ? K.PENDING : K.NOT_PROVIDED);
+      vals.bizKycResultChecks = (br.kycChecks || []).map(c => ({
+        label: c.label, state: c.state, stateStyle: stateStyle(c.state)
+      }));
+
+      vals.bizExplanation = br.explanation;
+      vals.bizPositives = br.positives; vals.bizHasPositives = br.positives.length > 0; vals.bizNoPositives = br.positives.length === 0;
+      vals.bizConcerns = br.concerns; vals.bizHasConcerns = br.concerns.length > 0; vals.bizNoConcerns = br.concerns.length === 0;
+      vals.bizUnavailableList = br.sourcesUnavailable.map(e => e.label);
+      vals.bizHasUnavailable = br.sourcesUnavailable.length > 0;
+      vals.bizNoUnavailable = br.sourcesUnavailable.length === 0;
+
+      vals.showBizTrace = s.showBizTrace;
+      vals.bizTraceToggleLabel = s.showBizTrace ? 'Hide how this was assessed' : 'How was this assessed?';
+      vals.onToggleBizTrace = () => this.setState(st => ({ showBizTrace: !st.showBizTrace }));
+      vals.bizTrace = br.trace.map((t, i) => ({
+        id: t.id, text: t.text, detail: t.detail,
+        firedLabel: t.fired ? 'Applied' : 'Not engaged',
+        style: 'display:grid;grid-template-columns:32px minmax(0,1fr) 82px;gap:var(--space-3);padding:var(--space-3);align-items:start;' +
+          (i ? 'border-top:1px solid var(--color-divider);' : '') +
+          'opacity:' + (t.fired ? '1' : '0.55')
+      }));
+
+      vals.bizReviewRequested = s.bizReviewRequested;
+      vals.bizReviewRef = s.bizReviewRef;
+      vals.onBizRequestReview = () => this.setState({
+        bizReviewRequested: true,
+        bizReviewRef: 'BR-' + String(Math.floor(Math.random() * 9000) + 1000)
+      });
+      vals.onBizAdjust = () => { this.setState({ bizStep: 3, bizErrors: [] }); this.go('bizAssess'); };
+      vals.onBizRestart = () => this.restartBusiness();
+    }
+
+    return vals;
+  }
+}
+</script>
+</body>
+</html>
