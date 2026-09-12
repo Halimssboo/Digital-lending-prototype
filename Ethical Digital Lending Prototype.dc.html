@@ -580,6 +580,106 @@ label { font-weight: 600; letter-spacing: 0; color: var(--c-charcoal); }
 </main>
 </sc-if>
 
+<sc-if value="{{ isAuth }}" hint-placeholder-val="{{ false }}">
+<main style="position:relative;isolation:isolate;padding:var(--space-8) var(--space-6);min-height:70vh">
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(46% 18% at 78% 2%, rgba(221,242,239,.95), rgba(221,242,239,0) 70%),radial-gradient(36% 13% at 97% 11%, rgba(246,216,204,.78), rgba(246,216,204,0) 72%),radial-gradient(34% 10% at 54% 16%, rgba(242,198,109,.30), rgba(242,198,109,0) 74%),radial-gradient(44% 13% at 4% 25%, rgba(221,242,239,.72), rgba(221,242,239,0) 74%),radial-gradient(40% 12% at 92% 36%, rgba(246,216,204,.52), rgba(246,216,204,0) 74%),radial-gradient(52% 15% at 20% 48%, rgba(221,242,239,.72), rgba(221,242,239,0) 74%),radial-gradient(34% 10% at 95% 57%, rgba(242,198,109,.26), rgba(242,198,109,0) 74%),radial-gradient(50% 14% at 62% 68%, rgba(221,242,239,.62), rgba(221,242,239,0) 74%),radial-gradient(40% 12% at 6% 78%, rgba(246,216,204,.48), rgba(246,216,204,0) 74%),radial-gradient(46% 13% at 86% 88%, rgba(221,242,239,.58), rgba(221,242,239,0) 74%),radial-gradient(38% 11% at 30% 96%, rgba(242,198,109,.22), rgba(242,198,109,0) 74%),linear-gradient(180deg, #FFF9F3, #FFF9F3)"></div>
+  <div style="max-width:460px;margin:0 auto">
+    <div style="padding:var(--space-6);background:rgba(255,252,247,.62);border:1px solid rgba(24,92,93,.09);border-radius:14px;box-shadow:0 1px 2px rgba(32,37,38,.03)">
+      <h6 style="margin:0 0 var(--space-2);color:var(--c-teal)">Account access</h6>
+      <h1 style="margin:0 0 var(--space-2);font-size:clamp(28px,3.4vw,36px);line-height:1.18">{{ authTitle }}</h1>
+      <p class="text-muted" style="font-size:13px;line-height:1.5;margin:0 0 var(--space-6)">Simulated access for this prototype. The demo details are already filled in.</p>
+
+      <div role="tablist" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:4px;margin:0 0 var(--space-6);background:rgba(24,92,93,.06);border-radius:10px">
+        <button role="tab" aria-selected="{{ isSignup }}" onClick="{{ onAuthSignupTab }}" style="{{ signupTabStyle }}">Sign Up</button>
+        <button role="tab" aria-selected="{{ isLogin }}" onClick="{{ onAuthLoginTab }}" style="{{ loginTabStyle }}">Login</button>
+      </div>
+
+      <sc-if value="{{ isSignup }}" hint-placeholder-val="{{ true }}">
+        <div style="display:grid;gap:var(--space-4)">
+          <div class="field">
+            <label for="auth-name">Full name</label>
+            <input class="input" id="auth-name" value="{{ authName }}" onChange="{{ setAuthName }}">
+          </div>
+          <div class="field">
+            <label for="auth-email">Email</label>
+            <input class="input" id="auth-email" type="email" value="{{ authEmail }}" onChange="{{ setAuthEmail }}">
+          </div>
+          <div class="field">
+            <label for="auth-pw">Password</label>
+            <input class="input" id="auth-pw" type="password" value="{{ authPassword }}" onChange="{{ setAuthPassword }}">
+          </div>
+          <div class="field">
+            <label for="auth-pw2">Confirm password</label>
+            <input class="input" id="auth-pw2" type="password" value="{{ authConfirm }}" onChange="{{ setAuthConfirm }}">
+          </div>
+          <button class="btn btn-primary" onClick="{{ onCreateAccount }}" style="margin-top:var(--space-2);padding:var(--space-3) var(--space-6)">Create account</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isLogin }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid;gap:var(--space-4)">
+          <div class="field">
+            <label for="login-id">Username or email</label>
+            <input class="input" id="login-id" value="{{ loginId }}" onChange="{{ setLoginId }}">
+          </div>
+          <div class="field">
+            <label for="login-pw">Password</label>
+            <input class="input" id="login-pw" type="password" value="{{ loginPassword }}" onChange="{{ setLoginPassword }}">
+          </div>
+          <button class="btn btn-primary" onClick="{{ onLogin }}" style="margin-top:var(--space-2);padding:var(--space-3) var(--space-6)">Login</button>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</main>
+</sc-if>
+
+<sc-if value="{{ isAccount }}" hint-placeholder-val="{{ false }}">
+<main style="position:relative;isolation:isolate;padding:var(--space-8) var(--space-6);min-height:70vh">
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(46% 18% at 78% 2%, rgba(221,242,239,.95), rgba(221,242,239,0) 70%),radial-gradient(36% 13% at 97% 11%, rgba(246,216,204,.78), rgba(246,216,204,0) 72%),radial-gradient(34% 10% at 54% 16%, rgba(242,198,109,.30), rgba(242,198,109,0) 74%),radial-gradient(44% 13% at 4% 25%, rgba(221,242,239,.72), rgba(221,242,239,0) 74%),radial-gradient(40% 12% at 92% 36%, rgba(246,216,204,.52), rgba(246,216,204,0) 74%),radial-gradient(52% 15% at 20% 48%, rgba(221,242,239,.72), rgba(221,242,239,0) 74%),radial-gradient(34% 10% at 95% 57%, rgba(242,198,109,.26), rgba(242,198,109,0) 74%),radial-gradient(50% 14% at 62% 68%, rgba(221,242,239,.62), rgba(221,242,239,0) 74%),radial-gradient(40% 12% at 6% 78%, rgba(246,216,204,.48), rgba(246,216,204,0) 74%),radial-gradient(46% 13% at 86% 88%, rgba(221,242,239,.58), rgba(221,242,239,0) 74%),radial-gradient(38% 11% at 30% 96%, rgba(242,198,109,.22), rgba(242,198,109,0) 74%),linear-gradient(180deg, #FFF9F3, #FFF9F3)"></div>
+  <div style="max-width:1080px;margin:0 auto">
+    <h6 style="margin:0 0 var(--space-2);color:var(--c-teal)">Account</h6>
+    <h1 style="margin:0 0 var(--space-4);font-size:clamp(34px,5vw,50px);line-height:1.16">Welcome, {{ accountName }}</h1>
+    <p style="font-size:15px;line-height:1.5;max-width:40em;margin:0 0 var(--space-8)">A simulated account for this prototype. No account data is created or stored.</p>
+
+    <section>
+      <h2 style="margin:0 0 var(--space-4);font-size:clamp(24px,2.8vw,32px)">Profile</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:var(--space-4)">
+        <div style="display:grid;gap:var(--space-1);padding:var(--space-4);background:rgba(255,252,247,.62);border:1px solid rgba(24,92,93,.09);border-radius:14px;box-shadow:0 1px 2px rgba(32,37,38,.03)">
+          <span class="card-kicker" style="color:var(--c-teal)">Name</span>
+          <span style="font-size:16px;font-weight:600">{{ accountName }}</span>
+        </div>
+        <div style="display:grid;gap:var(--space-1);padding:var(--space-4);background:rgba(255,252,247,.62);border:1px solid rgba(24,92,93,.09);border-radius:14px;box-shadow:0 1px 2px rgba(32,37,38,.03)">
+          <span class="card-kicker" style="color:var(--c-teal)">Email</span>
+          <span style="font-size:16px;font-weight:600;overflow-wrap:anywhere">{{ accountEmail }}</span>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-divider)">
+      <h2 style="margin:0 0 var(--space-4);font-size:clamp(24px,2.8vw,32px)">Application activity</h2>
+      <sc-if value="{{ hasActivity }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid;gap:var(--space-3)">
+          <sc-for list="{{ accountActivity }}" as="a" hint-placeholder-count="1">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap;padding:var(--space-4);background:rgba(255,252,247,.62);border:1px solid rgba(24,92,93,.09);border-radius:14px;box-shadow:0 1px 2px rgba(32,37,38,.03)">
+              <span style="font-size:15px;font-weight:600">{{ a.title }}</span>
+              <span class="text-muted" style="font-size:13px">{{ a.status }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ noActivity }}" hint-placeholder-val="{{ true }}">
+        <p class="text-muted" style="font-size:14px;line-height:1.5;margin:0">No submitted applications to display.</p>
+      </sc-if>
+    </section>
+
+    <div style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-divider)">
+      <button class="btn btn-secondary" onClick="{{ onLogout }}" style="padding:var(--space-3) var(--space-6)">Logout</button>
+    </div>
+  </div>
+</main>
+</sc-if>
+
 <sc-if value="{{ isBizAssess }}" hint-placeholder-val="{{ false }}">
 <main style="max-width:1120px;margin:0 auto;padding:var(--space-6) var(--space-6) var(--space-8)">
   <h6 style="margin:0 0 var(--space-2);color:var(--color-accent-700)">Business assessment</h6>
@@ -1102,6 +1202,34 @@ label { font-weight: 600; letter-spacing: 0; color: var(--c-charcoal); }
           </sc-for>
         </dl>
       </div>
+
+      <div style="display:grid;gap:var(--space-4);padding:var(--space-6);background:rgba(255,252,247,.62);border:1px solid rgba(24,92,93,.09);border-radius:14px;box-shadow:0 1px 2px rgba(32,37,38,.03)">
+        <div>
+          <h5 style="margin:0 0 var(--space-1);color:var(--c-teal)">Bank details</h5>
+          <p class="text-muted" style="font-size:12px;line-height:1.5;margin:0;max-width:48em">Provide the account details that would be used for verification and disbursement in a live lending process.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:var(--space-4)">
+          <div class="field">
+            <label for="bank-holder">Account holder name</label>
+            <input class="input" id="bank-holder" value="{{ bankHolder }}" onChange="{{ setBankHolder }}">
+          </div>
+          <div class="field">
+            <label for="bank-name">Bank name</label>
+            <input class="input" id="bank-name" value="{{ bankName }}" onChange="{{ setBankName }}">
+          </div>
+          <div class="field">
+            <label for="bank-number">Account number</label>
+            <input class="input" id="bank-number" inputMode="numeric" value="{{ bankNumber }}" onChange="{{ setBankNumber }}">
+          </div>
+          <div class="field">
+            <label for="bank-type">Account type</label>
+            <select class="input" id="bank-type" value="{{ bankType }}" onChange="{{ setBankType }}">
+              <option value="Current">Current</option>
+              <option value="Savings">Savings</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </section>
   </sc-if>
 
@@ -1525,6 +1653,15 @@ class Component extends DCLogic {
     // Which product's information page is open (routing only).
     productKind: '',
     productId: '',
+    // Simulated account access (prototype only: no backend, no storage).
+    authed: false,
+    authTab: 'signup',
+    authName: 'Demo User',
+    authEmail: 'demo@ethicallending.com',
+    authPassword: 'Demo1234',
+    authConfirm: 'Demo1234',
+    loginId: 'demo@ethicallending.com',
+    loginPassword: 'Demo1234',
     // Demonstration mode. Off for a normal application: the applicant sees
     // only the standard fields. Turned on by the Try demo entry points, which
     // is the only route that reveals the profile chips and the simulate-all
@@ -1548,6 +1685,8 @@ class Component extends DCLogic {
       loanProduct: '', rateBasis: 'annual',
       loanAmount: '', loanTermMonths: '', interestRate: '', existingDebt: '',
       essentialExpenses: '',
+      bankHolder: 'Demo User', bankName: 'Demo Bank',
+      bankNumber: '0001234567', bankType: 'Savings',
       creditHistory: 'Unavailable', bankConsistency: 'Unavailable',
       utilityPayments: 'Unavailable', mobileMoney: 'Unavailable',
       kyc: {}
@@ -1642,6 +1781,11 @@ class Component extends DCLogic {
       }),
       errors: []
     }));
+  }
+
+  /** Simulated bank details. Prototype session only: never verified or stored. */
+  bankDefaults() {
+    return { bankHolder: 'Demo User', bankName: 'Demo Bank', bankNumber: '0001234567', bankType: 'Savings' };
   }
 
   set(key, value) {
@@ -1770,6 +1914,11 @@ class Component extends DCLogic {
     window.scrollTo(0, 0);
   }
 
+  authTabStyle(active) {
+    return 'font-family:inherit;font-size:14px;font-weight:600;padding:8px 10px;border:0;border-radius:8px;cursor:pointer;transition:background 180ms ease,color 180ms ease;'
+      + (active ? 'background:rgba(255,255,255,.92);color:var(--c-teal);box-shadow:0 1px 2px rgba(32,37,38,.06)' : 'background:transparent;color:#747F7E');
+  }
+
   go(page, step) {
     this.setState({ page: page, step: step || this.state.step, errors: [] });
     if (typeof window !== 'undefined') window.scrollTo(0, 0);
@@ -1811,6 +1960,11 @@ class Component extends DCLogic {
           amount: f.loanAmount, term: f.loanTermMonths, rate: f.interestRate
         }).forEach(function (msg) { e.push(msg); });
       }
+      // Simulated KYC only — these never reach the affordability or assessment inputs.
+      if (!String(f.bankHolder || '').trim()) e.push('Enter the account holder name.');
+      if (!String(f.bankName || '').trim()) e.push('Enter the bank name.');
+      if (!String(f.bankNumber || '').trim()) e.push('Enter the account number.');
+      if (!f.bankType) e.push('Select an account type.');
     }
     return e;
   }
@@ -1882,7 +2036,7 @@ class Component extends DCLogic {
     // verified, so the journey can be walked without re-entering them.
     var K = window.EDL.kyc;
     var profile = window.EDL.data.countryProfile(demo.form.region, demo.form.country);
-    var form = Object.assign({}, demo.form);
+    var form = Object.assign({}, this.bankDefaults(), demo.form);
     form.kyc = K.markAll(K.personalChecks(form, profile), K.VERIFIED);
     this.setState({
       form: form,
@@ -1941,7 +2095,7 @@ class Component extends DCLogic {
   // arrived from, and the assessment then runs step by step as normal.
   applyPersonal(pid) {
     var K = window.EDL.kyc, demo = window.EDL.demos[0];
-    var form = Object.assign({}, demo.form);
+    var form = Object.assign({}, this.bankDefaults(), demo.form);
     if (pid) form = this.fitPersonalProduct(form, pid);
     var profile = window.EDL.data.countryProfile(form.region, form.country);
     form.kyc = K.markAll(K.personalChecks(form, profile), K.VERIFIED);
@@ -1977,7 +2131,9 @@ class Component extends DCLogic {
         loanProduct: '', rateBasis: 'annual',
         loanAmount: '', loanTermMonths: '', interestRate: '', existingDebt: '',
         essentialExpenses: '',
-        creditHistory: 'Unavailable', bankConsistency: 'Unavailable',
+        bankHolder: 'Demo User', bankName: 'Demo Bank',
+      bankNumber: '0001234567', bankType: 'Savings',
+      creditHistory: 'Unavailable', bankConsistency: 'Unavailable',
         utilityPayments: 'Unavailable', mobileMoney: 'Unavailable', kyc: {}
       }
     });
@@ -2170,12 +2326,14 @@ class Component extends DCLogic {
     var items = [
       { label: 'Home', page: 'home' },
       { label: 'Personal', page: 'personal' },
-      { label: 'Business', page: 'business' }
+      { label: 'Business', page: 'business' },
+      this.state.authed ? { label: 'Account', page: 'account' } : { label: 'Sign Up', page: 'auth' }
     ];
     // The assessment and results pages belong to the section that owns them,
     // so the nav stays lit while an application is in progress.
     var section = { assess: 'personal', results: 'personal', bizAssess: 'business', bizResults: 'business',
-      product: this.state.productKind === 'business' ? 'business' : 'personal' }[page] || page;
+      product: this.state.productKind === 'business' ? 'business' : 'personal',
+      auth: this.state.authed ? 'account' : 'auth' }[page] || page;
     return items.map(it => {
       var menu = (menus && menus[it.page]) || null;
       var isOpen = !!menu && openKey === it.page;
@@ -2227,6 +2385,11 @@ class Component extends DCLogic {
     var infoCountry = s.infoCountry || f.country || s.bizForm.country || '';
     var infoCur = M.currencyForCountry(infoCountry);
 
+    // Activity reflects only what was submitted in this session — no invented history.
+    var accountActivity = [];
+    if (s.submitted) accountActivity.push({ title: 'Personal loan application', status: 'Submitted \u2014 in review' });
+    if (s.bizSubmitted) accountActivity.push({ title: 'Business funding application', status: 'Submitted \u2014 in review' });
+
     var RESOURCES = this.resourceList();
     var openRes = (s.resOpen === null || s.resOpen === undefined) ? null : RESOURCES[s.resOpen];
 
@@ -2261,6 +2424,38 @@ class Component extends DCLogic {
     var vals = {
       navItems: this.buildNav({ personal: personalList, business: businessList }),
       isHome: s.page === 'home',
+      bankHolder: f.bankHolder, bankName: f.bankName,
+      bankNumber: f.bankNumber, bankType: f.bankType,
+      setBankHolder: (e) => this.set('bankHolder', e.target.value),
+      setBankName: (e) => this.set('bankName', e.target.value),
+      setBankNumber: (e) => this.set('bankNumber', e.target.value),
+      setBankType: (e) => this.set('bankType', e.target.value),
+      isAuth: s.page === 'auth',
+      isAccount: s.page === 'account',
+      isSignup: s.authTab === 'signup',
+      isLogin: s.authTab === 'login',
+      authTitle: s.authTab === 'signup' ? 'Create your account' : 'Welcome back',
+      signupTabStyle: this.authTabStyle(s.authTab === 'signup'),
+      loginTabStyle: this.authTabStyle(s.authTab === 'login'),
+      authName: s.authName, authEmail: s.authEmail,
+      authPassword: s.authPassword, authConfirm: s.authConfirm,
+      loginId: s.loginId, loginPassword: s.loginPassword,
+      setAuthName: (e) => this.setState({ authName: e.target.value }),
+      setAuthEmail: (e) => this.setState({ authEmail: e.target.value }),
+      setAuthPassword: (e) => this.setState({ authPassword: e.target.value }),
+      setAuthConfirm: (e) => this.setState({ authConfirm: e.target.value }),
+      setLoginId: (e) => this.setState({ loginId: e.target.value }),
+      setLoginPassword: (e) => this.setState({ loginPassword: e.target.value }),
+      onAuthSignupTab: () => this.setState({ authTab: 'signup' }),
+      onAuthLoginTab: () => this.setState({ authTab: 'login' }),
+      onCreateAccount: () => { this.setState({ authed: true }); this.go('account', 1); },
+      onLogin: () => { this.setState({ authed: true }); this.go('account', 1); },
+      onLogout: () => { this.setState({ authed: false, authTab: 'signup' }); this.go('home', 1); },
+      accountName: s.authName || 'Demo User',
+      accountEmail: s.authEmail || 'demo@ethicallending.com',
+      accountActivity: accountActivity,
+      hasActivity: accountActivity.length > 0,
+      noActivity: accountActivity.length === 0,
       isPersonal: s.page === 'personal',
       isBusiness: s.page === 'business',
       isBizAssess: s.page === 'bizAssess',
